@@ -29,12 +29,12 @@ namespace NAA.Webservices
         [WebMethod]
         public NAA.Data.Applicant GetApplicantByApplication(int applicationId)
         {
-            return _universityService.GetApplicant
+            return _universityService.GetApplicantByApplication(applicationId);
         }
 
         public List<NAA.Data.BEAN.ApplicationBEAN> GetApplications(int universityId)
         {
-            return "Hello World";
+            return _universityService.GetApplications(universityId).ToList();
         }
 
         public NAA.Data.BEAN.ApplicationBEAN ChangeOfferOfApplication(int applicationId)

@@ -21,11 +21,11 @@ namespace NAA.Services.Services
         }
         public Applicant GetApplicantByApplication(int applicationId)
         {
-            return _applicationDAO.GetApplicant(applicationId);
+            return _applicationDAO.GetApplicantByApplication(applicationId);
         }
-        public IList<NAA.Data.BEAN.ApplicationBEAN> GetUniversityApplications(int applicantId)
+        public IList<NAA.Data.BEAN.ApplicationBEAN> GetUniversityApplications(int universityId)
         {
-            return _applicationDAO.GetUniversityApplications(applicantId);
+            return _applicationDAO.GetUniversityApplications(universityId);
         }
         public void UpdateOfferOfApplication(int applicationId, NAA.Data.BEAN.ApplicationBEAN application)
         {
