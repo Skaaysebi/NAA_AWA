@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NAA.Data;
+using NAA.Services.IServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,16 +10,23 @@ namespace NAA.Webapplication.Controllers
 {
     public class UniversityController : Controller
     {
-        // GET: University
-        public ActionResult Index()
+        private IApplicationService _applicationService;
+
+        public UniversityController()
         {
-            return View();
+            //_applicationService = new NAA.Services.Services.ApplicationService();
+        }
+        // GET: University
+        public ActionResult GetUniversities(int applicantId)
+        {
+            ViewBag.applicantId = applicantId;
+            return View(_applicationService.GetUniversities());
         }
 
         // GET: University/Details/5
-        public ActionResult Details(int id)
+        public ActionResult GetCourses(int universityId, int applicantId)
         {
-            return View();
+            return View(_applicationService.GetCourses(universityId));
         }
 
         // GET: University/Create

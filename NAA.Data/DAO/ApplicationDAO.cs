@@ -125,7 +125,7 @@ namespace NAA.Data.DAO
             throw new NotImplementedException();
         }
 
-        public void UpdateOfferOfApplication(int applicationId, ApplicationBEAN application)
+        public ApplicationBEAN UpdateOfferOfApplication(int applicationId, ApplicationBEAN application)
         {
             throw new NotImplementedException();
         }

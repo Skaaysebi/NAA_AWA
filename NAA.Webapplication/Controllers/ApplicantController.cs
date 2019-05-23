@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NAA.Data;
+using NAA.Services.IServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,12 @@ namespace NAA.Webapplication.Controllers
 {
     public class ApplicantController : Controller
     {
+        private IApplicationService _applicationService;
+
+        public ApplicantController()
+        {
+            //_applicationService = new NAA.Services.Services.ApplicationService();
+        }
         // GET: Applicant
         public ActionResult Index()
         {
@@ -21,20 +29,20 @@ namespace NAA.Webapplication.Controllers
         }
 
         // GET: Applicant/Create
-        public ActionResult Create()
+        public ActionResult CreateApplicant()
         {
             return View();
         }
 
         // POST: Applicant/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CreateApplicant(Applicant applicant)
         {
             try
             {
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                _applicationService.CreateApplicant(applicant);
+                return RedirectToAction("GetApplicant", new { applicant = applicant, Controller = "Music" });
             }
             catch
             {
