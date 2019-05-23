@@ -34,12 +34,12 @@ namespace NAA.Webservices
 
         public List<NAA.Data.BEAN.ApplicationBEAN> GetApplications(int universityId)
         {
-            return _universityService.GetApplications(universityId).ToList();
+            return _universityService.GetUniversityApplications(universityId).ToList();
         }
 
         public NAA.Data.BEAN.ApplicationBEAN ChangeOfferOfApplication(int applicationId)
         {
-            return "Hello World";
+            return _universityService.UpdateOfferOfApplication(applicationId);
         }
     }
 }
