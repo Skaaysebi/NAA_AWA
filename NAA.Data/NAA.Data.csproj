@@ -70,6 +70,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ApplicationModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="BEAN\ApplicationBEAN.cs" />
     <Compile Include="DAO\ApplicationDAO.cs" />
     <Compile Include="iDAO\IApplicationDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

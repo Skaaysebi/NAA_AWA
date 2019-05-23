@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NAA.Services.Services
 {
-    class ApplicationService
+    public class ApplicationService
     {
     }
 }
