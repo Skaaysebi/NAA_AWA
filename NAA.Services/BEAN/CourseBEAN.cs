@@ -9,9 +9,13 @@ namespace NAA.Data.BEAN
 {
     public class CourseBEAN
     {
+        public int Id { get; set; }
+        public string Description { get; set; }
+
         public CourseBEAN(Course course)
         {
-
+            Id = course.Id;
+            Description = course.Description;
         }
     }
 }

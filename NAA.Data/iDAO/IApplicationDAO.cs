@@ -22,6 +22,6 @@ namespace NAA.Data.iDAO
         IList<ApplicationBEAN> GetUniversityApplications(int applicantId);
         ApplicationBEAN GetApplication(int applicationId);
         void DeleteApplication(int applicationId);
-        void UpdateOfferOfApplication(int applicationId, ApplicationBEAN application);
+        ApplicationBEAN UpdateOfferOfApplication(int applicationId, ApplicationBEAN application);
     }
 }

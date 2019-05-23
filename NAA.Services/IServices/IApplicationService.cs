@@ -18,7 +18,7 @@ namespace NAA.Services.IServices
 
         void CreateApplication(ApplicationBEAN application);
         void UpdateApplication(ApplicationBEAN application);
-        IList<ApplicationBEAN> GetApplicantApplications(int universityId);
+        IList<ApplicationBEAN> GetApplicantApplications(int applicantID);
         ApplicationBEAN GetApplication(int applicationId);
         void DeleteApplication(int applicationId);
     }
