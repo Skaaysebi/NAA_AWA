@@ -254,6 +254,16 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NAA.Data\NAA.Data.csproj">
+      <Project>{b26c7253-c49b-459c-bbb8-4151e500f481}</Project>
+      <Name>NAA.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NAA.Services\NAA.Services.csproj">
+      <Project>{25d1320b-fdbc-4611-8849-937975091f9d}</Project>
+      <Name>NAA.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
