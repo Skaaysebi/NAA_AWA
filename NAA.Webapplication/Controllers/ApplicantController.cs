@@ -41,9 +41,43 @@ namespace NAA.Webapplication.Controllers
         [HttpPost]
         public ActionResult EditApplicant(Applicant user)
         {
-            _applicationService.UpdateApplicant(user);
-            //return RedirectToAction("Usermanagement", new { id = user.Id, controller="Applicant", action = "GetApplicant" });
-            return RedirectToAction("GetApplicant", new { id = user.Id, controller="Applicant" });
+            try
+            {
+                // TODO: Add insert logic here
+                
+                //return RedirectToAction("ProfileManagement", new { applicantId = applicant.Id, Controller = "Applicant", Action = "ProfileManagement" });
+            }
+            catch
+            {
+                return View();
+            }
         }
+
+        // GET: Applicant/Create
+        public ActionResult CreateApplicant()
+        {
+            return View();
+        }
+
+        // POST: Applicant/Create
+        [HttpPost]
+        public ActionResult CreateApplicant(Applicant applicant)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                _applicationService.CreateApplicant(applicant);
+                return RedirectToAction("GetApplicant", new { applicantId = applicant.Id, Controller = "Applicant" });
+                //return RedirectToAction("ProfileManagement", new { applicantId = applicant.Id, Controller = "Applicant", Action = "ProfileManagement" });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+
+    
     }
 }

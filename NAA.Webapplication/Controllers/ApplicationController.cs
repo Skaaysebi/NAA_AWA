@@ -1,4 +1,5 @@
 ﻿using NAA.Data;
+using NAA.Data.BEAN;
 using NAA.Services.IServices;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,12 @@ namespace NAA.Webapplication.Controllers
         [Authorize]
         public ActionResult EditApplication(int id)
         {
+            return View();
+        }
+
+        // GET: Application/Create
+        public ActionResult CreateApplication(int ApplicantId, int UniversityId, string CourseName)
+        {
             ApplicationBEAN _applicationToEdit = _applicationService.GetApplication(id);
             return View(_applicationToEdit);
         }
@@ -43,6 +50,22 @@ namespace NAA.Webapplication.Controllers
             {
                 _applicationService.UpdateApplication(application);
                 return RedirectToAction("ManageApplications", new { id = application.Id, controller = "Application" });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // POST: Application/Create
+        [HttpPost]
+        public ActionResult CreateApplication(ApplicationBEAN application)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                _applicationService.CreateApplication(application);
+                return RedirectToAction("GetCourseDetails", new { courseId = courseId, applicantId = application.Id, Controller = "Applicant" });
             }
             catch
             {
