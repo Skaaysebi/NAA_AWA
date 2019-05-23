@@ -196,6 +196,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="UniversityWebService.asmx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web References\Sheffield\Course.datasource">
       <DependentUpon>Reference.map</DependentUpon>
@@ -266,6 +267,10 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UniversityWebService.asmx.cs">
+      <DependentUpon>UniversityWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

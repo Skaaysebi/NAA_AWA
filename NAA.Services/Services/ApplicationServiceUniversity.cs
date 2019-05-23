@@ -8,31 +8,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NAA.Data;
+using NAA.Data.DAO;
+using NAA.Data.iDAO;
+
 
 namespace NAA.Services.Services
 {
-    public class ApplicationServiceUniversity : IApplicationServiceUniversity
+    public class ApplicationServiceUniversity
     {
-        private IApplicationDAO _dao;
+
+        private IApplicationDAO _applicationDAO;
 
         public ApplicationServiceUniversity()
         {
-            _dao = new ApplicationDAO();
+            _applicationDAO = new ApplicationDAO();
         }
-
         public Applicant GetApplicantByApplication(int applicationId)
         {
-            return _dao.GetApplicantByApplication(applicationId);
+            return _applicationDAO.GetApplicantByApplication(applicationId);
         }
-
-        public IList<ApplicationBEAN> GetUniversityApplications(int applicantId)
+        public IList<NAA.Data.BEAN.ApplicationBEAN> GetUniversityApplications(int universityId)
         {
-            throw new NotImplementedException();
+            return _applicationDAO.GetUniversityApplications(universityId);
         }
-
         public ApplicationBEAN UpdateOfferOfApplication(int applicationId, ApplicationBEAN application)
         {
-            throw new NotImplementedException();
+           return _applicationDAO.UpdateOfferOfApplication(applicationId, application);
         }
     }
 }
