@@ -1,0 +1,27 @@
+CREATE TABLE [dbo].[University] (
+    [UniversityId]   INT           IDENTITY (1, 1) NOT NULL,
+    [UniversityName] NVARCHAR (50) NOT NULL,
+    PRIMARY KEY CLUSTERED ([UniversityId] ASC)
+);
+
+CREATE TABLE [dbo].[Application] (
+    [Id]                    INT            IDENTITY (1, 1) NOT NULL,
+    [ApplicantId]           INT            NOT NULL,
+    [CourseName]            NVARCHAR (50)  NOT NULL,
+    [UniversityId]          NVARCHAR (50)  NOT NULL,
+    [PersonalStatement]     NVARCHAR (MAX) NOT NULL,
+    [TeacherReference]      NVARCHAR (MAX) NULL,
+    [TeacherContactDetails] NVARCHAR (MAX) NOT NULL,
+    [UniversityOffer]       CHAR (1)       NULL,
+    [Firm]                  BIT            NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[Applicant] (
+    [Id]               INT           IDENTITY (1, 1) NOT NULL,
+    [ApplicantName]    NVARCHAR (50) NOT NULL,
+    [ApplicantAddress] NVARCHAR (50) NOT NULL,
+    [Phone]            NVARCHAR (50) NOT NULL,
+    [Email]            NVARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_Applicant] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
