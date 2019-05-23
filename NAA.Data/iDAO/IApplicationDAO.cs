@@ -12,9 +12,9 @@ namespace NAA.Data.iDAO
         void CreateApplicant(Applicant applicant);
         void UpdateApplicant(Applicant applicant);
         Applicant GetApplicant(int applicantId);
+        Applicant GetApplicantByApplication(int applicationId);
 
         List<University> GetUniversities();
-        List<University> GetCourses(int universityId);
 
         void CreateApplication(ApplicationBEAN application);
         void UpdateApplication(ApplicationBEAN application);

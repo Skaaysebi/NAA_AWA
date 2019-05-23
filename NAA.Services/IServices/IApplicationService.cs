@@ -14,7 +14,7 @@ namespace NAA.Services.IServices
         void UpdateApplicant(Applicant applicant);
 
         List<University> GetUniversities();
-        List<University> GetCourses(int universityId);
+        List<CourseBEAN> GetCourses(int universityId);
 
         void CreateApplication(ApplicationBEAN application);
         void UpdateApplication(ApplicationBEAN application);
