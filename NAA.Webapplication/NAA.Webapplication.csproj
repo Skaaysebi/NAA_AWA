@@ -271,7 +271,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Applicant\CreateApplicant.cshtml" />
     <Content Include="Views\University\GetUniversities.cshtml" />
-    <Content Include="Views\Application\ManageApplications.cshtml" />
+    <Content Include="Views\Application\GetApplications.cshtml" />
     <Content Include="Views\Applicant\EditApplicant.cshtml" />
     <Content Include="Views\Application\DeleteApplication.cshtml" />
     <Content Include="Views\Application\EditApplication.cshtml" />

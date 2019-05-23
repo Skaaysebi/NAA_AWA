@@ -20,7 +20,7 @@ namespace NAA.Webapplication.Controllers
             //_applicationService = new IApplicationService();
         }
 
-        public ActionResult ManageApplications(int id)
+        public ActionResult GetApplications(int id)
         {
             IList<ApplicationBEAN> _applications = _applicationService.GetApplicantApplications(id);
             ViewBag.applicantId = id;
@@ -49,6 +49,7 @@ namespace NAA.Webapplication.Controllers
 
         public ActionResult AcceptApplication()
         {
+
             return View();
         }
 
