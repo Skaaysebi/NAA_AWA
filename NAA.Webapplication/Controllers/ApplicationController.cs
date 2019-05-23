@@ -30,12 +30,6 @@ namespace NAA.Webapplication.Controllers
         
         public ActionResult EditApplication(int id)
         {
-            return View();
-        }
-
-        // GET: Application/Create
-        public ActionResult CreateApplication(int ApplicantId, int UniversityId, string CourseName)
-        {
             ApplicationBEAN _applicationToEdit = _applicationService.GetApplication(id);
             return View(_applicationToEdit);
         }
@@ -54,15 +48,19 @@ namespace NAA.Webapplication.Controllers
             }
         }
 
-        // POST: Application/Create
+        public ActionResult CreateApplication(int courseId, string CourseName, int ApplicantId, int UniversityId)
+        {
+            return View();
+        }
+
         [HttpPost]
-        public ActionResult CreateApplication(ApplicationBEAN application)
+        public ActionResult CreateApplication(int courseId, ApplicationBEAN application)
         {
             try
             {
                 // TODO: Add insert logic here
                 _applicationService.CreateApplication(application);
-                return RedirectToAction("GetCourseDetails", new { courseId = courseId, applicantId = application.Id, Controller = "Applicant" });
+                return RedirectToAction("GetCourseDetails", new { courseId = courseId, ApplicantId = application.ApplicantId, UniversityId = application.UniversityId, Controller = "Course" });
             }
             catch
             {
