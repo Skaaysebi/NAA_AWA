@@ -23,21 +23,6 @@ namespace NAA.Webapplication.Controllers
             return View(_applicationService.GetUniversities());
         }
 
-        // GET: University/Details/5
-        public ActionResult GetCourses(int ApplicantId, int UniversityId)
-        {
-            ViewBag.UniversityId = UniversityId;
-            ViewBag.ApplicantId = ApplicantId;
-
-            return View(_applicationService.GetCourses(UniversityId));
-        }
-
-        // GET: University/Details/5
-        public ActionResult GetCourseDetails(int courseId, int applicantId)
-        {
-            return View(_applicationService.GetCourse(courseId));
-        }
-
         // GET: University/Create
         public ActionResult Create()
         {
