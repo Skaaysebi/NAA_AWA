@@ -66,17 +66,17 @@ namespace NAA.Services.Services
 
         public IList<University> GetUniversities()
         {
-            throw new NotImplementedException();
+            return _dao.GetUniversities();
         }
 
         public void UpdateApplicant(Applicant applicant)
         {
-            throw new NotImplementedException();
+            _dao.UpdateApplicant(applicant);
         }
 
         public void UpdateApplication(ApplicationBEAN application)
         {
-            throw new NotImplementedException();
+            _dao.UpdateApplication(application);
         }
     }
 }
