@@ -20,14 +20,24 @@ namespace NAA.Webservices
     public class UniversityWebService : System.Web.Services.WebService
     {
 
-        private NAA.Services.Services.ApplicationServiceUniversity();
+        private NAA.Services.Services.ApplicationServiceUniversity _universityService;
 
         public UniversityWebService()
         {
-
+            _universityService = new NAA.Services.Services.ApplicationServiceUniversity();
         }
         [WebMethod]
-        public string HelloWorld()
+        public NAA.Data.Applicant GetApplicantByApplication(int applicationId)
+        {
+            return _universityService.GetApplicant
+        }
+
+        public List<NAA.Data.BEAN.ApplicationBEAN> GetApplications(int universityId)
+        {
+            return "Hello World";
+        }
+
+        public NAA.Data.BEAN.ApplicationBEAN ChangeOfferOfApplication(int applicationId)
         {
             return "Hello World";
         }
