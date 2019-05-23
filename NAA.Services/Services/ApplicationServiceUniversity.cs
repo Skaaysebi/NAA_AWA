@@ -28,9 +28,10 @@ namespace NAA.Services.Services
         {
             return _applicationDAO.GetUniversityApplications(universityId);
         }
-        public ApplicationBEAN UpdateOfferOfApplication(int applicationId, ApplicationBEAN application)
+        public ApplicationBEAN UpdateOfferOfApplication(ApplicationBEAN application)
         {
-           return _applicationDAO.UpdateOfferOfApplication(applicationId, application);
+            _applicationDAO.UpdateApplication(application);
+            return _applicationDAO.GetApplication(application.Id);
         }
     }
 }

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<NAA.Data.BEAN.ApplicationBEAN>
+
+@{
+    ViewBag.Title = "ManageApplications";
+}
+
+<h2>ManageApplications</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicantName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UniversityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonalStatement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeacherReference)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeacherContactDetails)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UniversityOffer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Firm)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicantName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UniversityName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonalStatement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeacherReference)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeacherContactDetails)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UniversityOffer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Firm)
+        </td>
+        <td>
+            @Html.ActionLink("Accept", "AcceptApplication", new { id=item.Id, controller = "Application" }) |
+            @Html.ActionLink("Delete", "DeleteApplication", new { id=item.Id, controller = "Application" })
+        </td>
+    </tr>
+}
+
+</table>
