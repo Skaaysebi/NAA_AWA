@@ -122,12 +122,16 @@ namespace NAA.Data.DAO
 
         public void UpdateApplication(ApplicationBEAN application)
         {
-            throw new NotImplementedException();
-        }
-
-        public ApplicationBEAN UpdateOfferOfApplication(int applicationId, ApplicationBEAN application)
-        {
-            throw new NotImplementedException();
+            var actualApplication = GetActualApplication(application.Id);
+            actualApplication.ApplicantId = GetIdFromApplicantName(application.ApplicantName);
+            actualApplication.CourseName = application.CourseName;
+            actualApplication.Firm = application.Firm;
+            actualApplication.PersonalStatement = application.PersonalStatement;
+            actualApplication.TeacherContactDetails = application.TeacherContactDetails;
+            actualApplication.TeacherReference = application.TeacherReference;
+            // actualApplication.UniversityId = GetIdFromUniversityName(application.UniversityName);
+            actualApplication.UniversityOffer = application.UniversityOffer;
+            _context.SaveChanges();
         }
 
         public Applicant GetApplicantByApplication(int applicationId)
@@ -157,7 +161,7 @@ namespace NAA.Data.DAO
             return result.First().UniversityId;
         }
 
-        private int GetNameFromUniversityId(int universityId)
+        public string GetNameFromUniversityId(int universityId)
         {
             //TODO: change to int!!!
             var result = from university in _context.University
@@ -165,7 +169,7 @@ namespace NAA.Data.DAO
                              // where application.UniversityId == university.UniversityId
                          where university.UniversityId == universityId
                          select university;
-            return result.First().UniversityId;
+            return result.First().UniversityName;
         }
 
         private int GetIdFromApplicantName(string applicantName)
