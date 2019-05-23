@@ -10,11 +10,11 @@ namespace NAA.Data.DAO
 {
     public class ApplicationDAO : IApplicationDAO
     {
-        private ApplicationModel _context;
+        private ApplicationEntities _context;
 
         public ApplicationDAO()
         {
-            _context = new ApplicationModel();
+            _context = new ApplicationEntities();
         }
 
         public void CreateApplicant(Applicant applicant)
@@ -30,7 +30,7 @@ namespace NAA.Data.DAO
                 ApplicantId = GetIdFromApplicantName(application.ApplicantName),
                 CourseName = application.CourseName,
                 TeacherReference = application.TeacherReference,
-                //UniversityId = GetIdFromUniversityName(application.UniversityName),
+                UniversityId = GetIdFromUniversityName(application.UniversityName),
                 PersonalStatement = application.PersonalStatement,
                 TeacherContactDetails = application.TeacherContactDetails,
                 UniversityOffer = application.UniversityOffer,
@@ -57,9 +57,8 @@ namespace NAA.Data.DAO
 
         public IList<ApplicationBEAN> GetApplicantApplications(int universityId)
         {
-            // TODO: Remove comments
             var results = from application in _context.Application
-                         // where application.UniversityId == universityId
+                         where application.UniversityId == universityId
                          select application;
             var applications = new List<ApplicationBEAN>();
             foreach (var result in results)
@@ -77,7 +76,7 @@ namespace NAA.Data.DAO
                 Id = actualApplication.Id,
                 ApplicantName = GetNameFromApplicantId(actualApplication.ApplicantId),
                 CourseName = actualApplication.CourseName,
-                // UniversityName = GetNameFromUniversityId(actualApplication.UniversityId),
+                UniversityName = GetNameFromUniversityId(actualApplication.UniversityId),
                 UniversityOffer = actualApplication.UniversityOffer,
                 PersonalStatement = actualApplication.PersonalStatement,
                 TeacherReference = actualApplication.TeacherReference,
@@ -122,12 +121,16 @@ namespace NAA.Data.DAO
 
         public void UpdateApplication(ApplicationBEAN application)
         {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateOfferOfApplication(int applicationId, ApplicationBEAN application)
-        {
-            throw new NotImplementedException();
+            var actualApplication = GetActualApplication(application.Id);
+            actualApplication.ApplicantId = GetIdFromApplicantName(application.ApplicantName);
+            actualApplication.CourseName = application.CourseName;
+            actualApplication.Firm = application.Firm;
+            actualApplication.PersonalStatement = application.PersonalStatement;
+            actualApplication.TeacherContactDetails = application.TeacherContactDetails;
+            actualApplication.TeacherReference = application.TeacherReference;
+            actualApplication.UniversityId = GetIdFromUniversityName(application.UniversityName);
+            actualApplication.UniversityOffer = application.UniversityOffer;
+            _context.SaveChanges();
         }
 
         public Applicant GetApplicantByApplication(int applicationId)
@@ -148,24 +151,22 @@ namespace NAA.Data.DAO
 
         private int GetIdFromUniversityName(string universityName)
         {
-            //TODO: change to int!!!
             var result = from university in _context.University
                          from application in _context.Application
-                         // where application.UniversityId == university.UniversityId
+                         where application.UniversityId == university.UniversityId
                          where university.UniversityName == universityName
                          select university;
             return result.First().UniversityId;
         }
 
-        private int GetNameFromUniversityId(int universityId)
+        public string GetNameFromUniversityId(int universityId)
         {
-            //TODO: change to int!!!
             var result = from university in _context.University
                          from application in _context.Application
-                             // where application.UniversityId == university.UniversityId
+                         where application.UniversityId == university.UniversityId
                          where university.UniversityId == universityId
                          select university;
-            return result.First().UniversityId;
+            return result.First().UniversityName;
         }
 
         private int GetIdFromApplicantName(string applicantName)

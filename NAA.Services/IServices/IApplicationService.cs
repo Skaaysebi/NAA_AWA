@@ -12,15 +12,15 @@ namespace NAA.Services.IServices
     {
         void CreateApplicant(Applicant applicant);
         void UpdateApplicant(Applicant applicant);
-        void GetApplicant(Applicant applicant);
+        Applicant GetApplicant(int id);
 
-        List<University> GetUniversities();
-        List<CourseBEAN> GetCourses(int universityId);
-        CourseBEAN GetCourse(int courseId);
+        IList<University> GetUniversities();
+        IList<CourseBEAN> GetCourses(int universityId);
+        CourseBEAN GetCourse(int universityId, int courseId);
 
-        void CreateApplication(int applicantId, ApplicationBEAN application);
+        void CreateApplication(ApplicationBEAN application);
         void UpdateApplication(ApplicationBEAN application);
-        IList<ApplicationBEAN> GetApplicantApplications(int universityId);
+        IList<ApplicationBEAN> GetApplicantApplications(int applicantID);
         ApplicationBEAN GetApplication(int applicationId);
         void DeleteApplication(int applicationId);
     }

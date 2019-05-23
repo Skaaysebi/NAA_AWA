@@ -12,6 +12,6 @@ namespace NAA.Services.IServices
     {
         Applicant GetApplicantByApplication(int applicationId);
         IList<ApplicationBEAN> GetUniversityApplications(int applicantId);
-        void UpdateOfferOfApplication(int applicationId, ApplicationBEAN application);
+        ApplicationBEAN UpdateOfferOfApplication(ApplicationBEAN application);
     }
 }

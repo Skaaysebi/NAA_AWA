@@ -18,10 +18,11 @@ namespace NAA.Data.iDAO
 
         void CreateApplication(ApplicationBEAN application);
         void UpdateApplication(ApplicationBEAN application);
-        IList<ApplicationBEAN> GetApplicantApplications(int universityId);
+        IList<ApplicationBEAN> GetApplicantApplications(int applicantId);
         IList<ApplicationBEAN> GetUniversityApplications(int applicantId);
         ApplicationBEAN GetApplication(int applicationId);
         void DeleteApplication(int applicationId);
-        void UpdateOfferOfApplication(int applicationId, ApplicationBEAN application);
+
+        string GetNameFromUniversityId(int universityId);
     }
 }

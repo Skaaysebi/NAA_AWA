@@ -6,6 +6,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using NAA.Data.DAO;
+using NAA.Services.Services;
+using NAA.Services.IServices;
+using NAA.Data.BEAN;
+
 namespace NAA.Webapplication.Controllers
 {
     public class ApplicantController : Controller
@@ -14,29 +19,23 @@ namespace NAA.Webapplication.Controllers
 
         public ApplicantController()
         {
-            //_applicationService = new NAA.Services.Services.ApplicationService();
+            //_applicationService = new ApplicationService();
         }
-        // GET: Applicant
-        public ActionResult Index()
-        {
+
+        public ActionResult GetApplicant(int id)
+        { 
+            ViewBag.ApplicantId = id;
             return View();
         }
 
-        // GET: Applicant/Details/5
-        public ActionResult Details(int id)
+        public ActionResult EditApplicant(int id)
         {
-            return View();
+            Applicant _applicantToEdit = _applicationService.GetApplicant(id);
+            return View(_applicantToEdit);
         }
 
-        // GET: Applicant/Create
-        public ActionResult CreateApplicant()
-        {
-            return View();
-        }
-
-        // POST: Applicant/Create
         [HttpPost]
-        public ActionResult CreateApplicant(Applicant applicant)
+        public ActionResult EditApplicant(Applicant user)
         {
             try
             {
@@ -51,48 +50,6 @@ namespace NAA.Webapplication.Controllers
             }
         }
 
-        // GET: Applicant/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Applicant/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Applicant/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Applicant/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
