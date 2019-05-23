@@ -31,15 +31,15 @@ namespace NAA.Webservices
         {
             return _universityService.GetApplicantByApplication(applicationId);
         }
-
+        [WebMethod]
         public List<NAA.Data.BEAN.ApplicationBEAN> GetApplications(int universityId)
         {
             return _universityService.GetUniversityApplications(universityId).ToList();
         }
-
-        public NAA.Data.BEAN.ApplicationBEAN ChangeOfferOfApplication(int applicationId, NAA.Data.BEAN.ApplicationBEAN application)
+        [WebMethod]
+        public NAA.Data.BEAN.ApplicationBEAN ChangeOfferOfApplication(NAA.Data.BEAN.ApplicationBEAN application)
         {
-            return _universityService.UpdateOfferOfApplication(applicationId, application);
+            return _universityService.UpdateOfferOfApplication(application);
         }
     }
 }
