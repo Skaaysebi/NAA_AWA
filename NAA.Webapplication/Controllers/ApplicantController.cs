@@ -4,86 +4,37 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using NAA.Data.DAO;
+using NAA.Services.Services;
+using NAA.Data.BEAN;
+
 namespace NAA.Webapplication.Controllers
 {
     public class ApplicantController : Controller
     {
-        // GET: Applicant
-        public ActionResult Index()
+        private ApplicationService _applicationService;
+
+        public ApplicantController()
+        {
+            _applicationService = new ApplicationService();
+        }
+
+        public ActionResult Usermanagement(int id)
         {
             return View();
         }
 
-        // GET: Applicant/Details/5
-        public ActionResult Details(int id)
+        public ActionResult EditProfile(int id)
         {
+
             return View();
         }
 
-        // GET: Applicant/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Applicant/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult EditProfile(int id, ApplicationBEAN user)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Applicant/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Applicant/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Applicant/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Applicant/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            _applicationService.
+            return RedirectToAction("Usermanagement", new { id = user.Id, controller="Applicant" });
         }
     }
 }

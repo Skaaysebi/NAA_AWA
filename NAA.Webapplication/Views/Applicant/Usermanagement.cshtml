@@ -1,0 +1,11 @@
+﻿@model NAA.Data.Applicant
+@{
+    ViewBag.Title = "Usermanagement";
+}
+
+<h2>Usermanagement</h2>
+
+@Html.ActionLink("List of Universitys", "GetUniversities", new { id = Model.Id, controller = "University" })
+@Html.ActionLink("Edit Profile", "EditProfile", new { id = Model.Id, controller = "Applicant" })
+@Html.ActionLink("Manage Applications", "ManageApplications", new { id = Model.Id, controller = "Applications" })
+

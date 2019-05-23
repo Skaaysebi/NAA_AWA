@@ -4,86 +4,47 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using NAA.Data.BEAN;
+using NAA.Services.IServices;
+
 namespace NAA.Webapplication.Controllers
 {
     public class ApplicationController : Controller
     {
-        // GET: Application
-        public ActionResult Index()
+        private IApplicationService _applicationService;
+
+        public ApplicationController()
+        {
+            //_applicationService = new IApplicationService();
+        }
+
+        public ActionResult ManageApplications()
         {
             return View();
         }
 
-        // GET: Application/Details/5
-        public ActionResult Details(int id)
+        public ActionResult AcceptApplication()
         {
             return View();
         }
 
-        // GET: Application/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Application/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult AcceptApplication(int id)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("ManageApplications", new { id = id, controller = "Applicant" });
         }
 
-        // GET: Application/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult DeleteApplication()
         {
             return View();
         }
 
-        // POST: Application/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult DeleteApplication(ApplicationBEAN application)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Application/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Application/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            ApplicationBEAN _applicationToDelete = _applicationService.GetApplication(application.Id);
+            _applicationService.DeleteApplication(_applicationToDelete.Id);
+            return RedirectToAction("ManageApplications", new { id = _applicationToDelete.Id, controller = "Application" });
         }
     }
 }
