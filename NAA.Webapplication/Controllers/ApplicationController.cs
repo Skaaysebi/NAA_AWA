@@ -1,4 +1,5 @@
 ﻿using NAA.Data;
+using NAA.Data.BEAN;
 using NAA.Services.IServices;
 using System;
 using System.Collections.Generic;
@@ -29,20 +30,20 @@ namespace NAA.Webapplication.Controllers
         }
 
         // GET: Application/Create
-        public ActionResult Create()
+        public ActionResult CreateApplication(int ApplicantId, int UniversityId, string CourseName)
         {
             return View();
         }
 
         // POST: Application/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CreateApplication(ApplicationBEAN application)
         {
             try
             {
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                _applicationService.CreateApplication(application);
+                return RedirectToAction("GetCourseDetails", new { courseId = courseId, applicantId = application.Id, Controller = "Applicant" });
             }
             catch
             {

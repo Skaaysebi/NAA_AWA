@@ -42,7 +42,8 @@ namespace NAA.Webapplication.Controllers
             {
                 // TODO: Add insert logic here
                 _applicationService.CreateApplicant(applicant);
-                return RedirectToAction("GetApplicant", new { applicant = applicant, Controller = "Music" });
+                return RedirectToAction("GetApplicant", new { applicantId = applicant.Id, Controller = "Applicant" });
+                //return RedirectToAction("ProfileManagement", new { applicantId = applicant.Id, Controller = "Applicant", Action = "ProfileManagement" });
             }
             catch
             {

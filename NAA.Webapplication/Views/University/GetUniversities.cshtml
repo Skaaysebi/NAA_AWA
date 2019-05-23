@@ -23,7 +23,7 @@
             @Html.DisplayFor(modelItem => item.UniversityName)
         </td>
         <td>
-            @Html.ActionLink("Courses", "GetCourses", new { universityId= item.UniversityId, ViewBag.applicantId }) |
+            @Html.ActionLink("Courses", "GetCourses", new { universityId= item.UniversityId, ApplicantId = ViewBag.ApplicantId, UniversityId = ViewBag.UniversityId })
         </td>
     </tr>
 }

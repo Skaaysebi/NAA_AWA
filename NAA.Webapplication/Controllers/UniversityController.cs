@@ -17,16 +17,25 @@ namespace NAA.Webapplication.Controllers
             //_applicationService = new NAA.Services.Services.ApplicationService();
         }
         // GET: University
-        public ActionResult GetUniversities(int applicantId)
+        public ActionResult GetUniversities(int ApplicantId)
         {
-            ViewBag.applicantId = applicantId;
+            ViewBag.ApplicantId = ApplicantId;
             return View(_applicationService.GetUniversities());
         }
 
         // GET: University/Details/5
-        public ActionResult GetCourses(int universityId, int applicantId)
+        public ActionResult GetCourses(int ApplicantId, int UniversityId)
         {
-            return View(_applicationService.GetCourses(universityId));
+            ViewBag.UniversityId = UniversityId;
+            ViewBag.ApplicantId = ApplicantId;
+
+            return View(_applicationService.GetCourses(UniversityId));
+        }
+
+        // GET: University/Details/5
+        public ActionResult GetCourseDetails(int courseId, int applicantId)
+        {
+            return View(_applicationService.GetCourse(courseId));
         }
 
         // GET: University/Create
