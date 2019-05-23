@@ -8,10 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NAA.Data;
-using NAA.Data.DAO;
-using NAA.Data.iDAO;
-
 
 namespace NAA.Services.Services
 {

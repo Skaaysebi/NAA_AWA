@@ -45,7 +45,7 @@ namespace NAA.Services.Services
 
         public List<CourseBEAN> GetCourses(int universityId)
         {
-            _service.
+            //_service.
         }
 
         public List<University> GetUniversities()
