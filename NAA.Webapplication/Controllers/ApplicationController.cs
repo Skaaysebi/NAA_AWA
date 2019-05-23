@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NAA.Data;
+using NAA.Services.IServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,12 @@ namespace NAA.Webapplication.Controllers
 {
     public class ApplicationController : Controller
     {
+        private IApplicationService _applicationService;
+
+        public ApplicationController()
+        {
+            //_applicationService = new NAA.Services.Services.ApplicationService();
+        }
         // GET: Application
         public ActionResult Index()
         {
