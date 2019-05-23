@@ -18,8 +18,8 @@ namespace NAA.Services.IServices
 
         void CreateApplication(ApplicationBEAN application);
         void UpdateApplication(ApplicationBEAN application);
-        void GetApplicantApplications(int universityId);
-        void GetApplication(int applicationId);
+        IList<ApplicationBEAN> GetApplicantApplications(int universityId);
+        ApplicationBEAN GetApplication(int applicationId);
         void DeleteApplication(int applicationId);
     }
 }

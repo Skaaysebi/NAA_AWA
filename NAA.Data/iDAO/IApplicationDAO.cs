@@ -11,16 +11,16 @@ namespace NAA.Data.iDAO
     {
         void CreateApplicant(Applicant applicant);
         void UpdateApplicant(Applicant applicant);
-        void GetApplicant(int applicantId);
+        Applicant GetApplicant(int applicantId);
 
         List<University> GetUniversities();
         List<University> GetCourses(int universityId);
 
         void CreateApplication(ApplicationBEAN application);
         void UpdateApplication(ApplicationBEAN application);
-        void GetApplicantApplications(int universityId);
-        void GetUniversityApplications(int applicantId);
-        void GetApplication(int applicationId);
+        IList<ApplicationBEAN> GetApplicantApplications(int universityId);
+        IList<ApplicationBEAN> GetUniversityApplications(int applicantId);
+        ApplicationBEAN GetApplication(int applicationId);
         void DeleteApplication(int applicationId);
         void UpdateOfferOfApplication(int applicationId, ApplicationBEAN application);
     }
