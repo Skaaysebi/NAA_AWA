@@ -6,6 +6,7 @@ using System.Web.Services;
 using NAA.Services;
 using NAA.Data;
 using NAA.Services.Services;
+using NAA.Data.BEAN;
 
 namespace NAA.Webservices
 {
@@ -20,26 +21,26 @@ namespace NAA.Webservices
     public class UniversityWebService : System.Web.Services.WebService
     {
 
-        private NAA.Services.Services.ApplicationServiceUniversity _universityService;
+        private ApplicationServiceUniversity _universityService;
 
         public UniversityWebService()
         {
-            _universityService = new NAA.Services.Services.ApplicationServiceUniversity();
+            _universityService = new ApplicationServiceUniversity();
         }
         [WebMethod]
-        public NAA.Data.Applicant GetApplicantByApplication(int applicationId)
+        public Applicant GetApplicantByApplication(int applicationId)
         {
             return _universityService.GetApplicantByApplication(applicationId);
         }
 
-        public List<NAA.Data.BEAN.ApplicationBEAN> GetApplications(int universityId)
+        public List<ApplicationBEAN> GetApplications(int universityId)
         {
             return _universityService.GetUniversityApplications(universityId).ToList();
         }
 
-        public NAA.Data.BEAN.ApplicationBEAN ChangeOfferOfApplication(int applicationId, NAA.Data.BEAN.ApplicationBEAN application)
+        public ApplicationBEAN ChangeOfferOfApplication(int applicationId, ApplicationBEAN application)
         {
-            return _universityService.UpdateOfferOfApplication(applicationId, application);
+            return _universityService.UpdateOfferOfApplication(application);
         }
     }
 }

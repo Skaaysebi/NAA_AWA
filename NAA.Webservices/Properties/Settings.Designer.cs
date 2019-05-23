@@ -22,25 +22,5 @@ namespace NAA.Webservices.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://webteach_net.hallam.shu.ac.uk/cmsmr2/SheffieldWebService.asmx")]
-        public string NAA_Webservices_Sheffield_SheffieldWebService {
-            get {
-                return ((string)(this["NAA_Webservices_Sheffield_SheffieldWebService"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://webteach_net.hallam.shu.ac.uk/cmsmr2/SHUWebService.asmx")]
-        public string NAA_Webservices_Sheffield_Hallam_SHUWebService {
-            get {
-                return ((string)(this["NAA_Webservices_Sheffield_Hallam_SHUWebService"]));
-            }
-        }
     }
 }
