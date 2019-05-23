@@ -1,0 +1,52 @@
+﻿@model NAA.Data.Applicant
+
+@{
+    ViewBag.Title = "GetApplicant";
+}
+
+<h2>User Management</h2>
+
+<p>
+    @Html.ActionLink("List of Universitys", "GetUniversities", new { id = Model.Id, controller = "University" })
+    @Html.ActionLink("Edit Profile", "EditProfile", new { id = Model.Id, controller = "Applicant" })
+    @Html.ActionLink("Manage Applications", "ManageApplications", new { id = Model.Id, controller = "Applications" })
+</p>
+
+<div>
+    <h4>Applicant</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicantName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicantName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicantAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicantAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+</div>

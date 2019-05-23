@@ -22,23 +22,24 @@ namespace NAA.Webapplication.Controllers
             //_applicationService = new ApplicationService();
         }
 
-        public ActionResult ProfileManagement(int id)
-        {
+        public ActionResult GetApplicant(int id)
+        { 
             ViewBag.ApplicantId = id;
             return View();
         }
 
-        public ActionResult EditProfile(int id)
+        public ActionResult EditApplicant(int id)
         {
-            Applicant _applicantToEdit = _applicationService.getApplicant(id);
+            Applicant _applicantToEdit = _applicationService.GetApplicant(id);
             return View(_applicantToEdit);
         }
 
         [HttpPost]
-        public ActionResult EditProfile(Applicant user)
+        public ActionResult EditApplicant(Applicant user)
         {
             _applicationService.UpdateApplicant(user);
-            return RedirectToAction("Usermanagement", new { id = user.Id, controller="Applicant" });
+            //return RedirectToAction("Usermanagement", new { id = user.Id, controller="Applicant", action = "GetApplicant" });
+            return RedirectToAction("GetApplicant", new { id = user.Id, controller="Applicant" });
         }
     }
 }
