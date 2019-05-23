@@ -39,9 +39,9 @@ namespace NAA.Services.Services
             _dao.DeleteApplication(applicationId);
         }
 
-        public Applicant getApplicant(Applicant applicant)
+        public Applicant GetApplicant(int id)
         {
-            return _dao.GetApplicant(applicant.Id);
+            return _dao.GetApplicant(id);
         }
 
         public IList<ApplicationBEAN> GetApplicantApplications(int applicantID)
