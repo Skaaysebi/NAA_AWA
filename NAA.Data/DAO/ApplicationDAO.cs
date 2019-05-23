@@ -25,26 +25,38 @@ namespace NAA.Data.DAO
 
         public void CreateApplication(ApplicationBEAN application)
         {
-
-            //_context.Application.Add();
+            Application realApplication = new Application()
+            {
+                ApplicantId = GetIdFromApplicantName(application.ApplicantName),
+                CourseName = application.CourseName,
+                TeacherReference = application.TeacherReference,
+                //UniversityId = GetIdFromUniversityName(application.UniversityName),
+                PersonalStatement = application.PersonalStatement,
+                TeacherContactDetails = application.TeacherContactDetails,
+                UniversityOffer = application.UniversityOffer,
+                Firm = application.Firm
+            };
+            _context.Application.Add(realApplication);
+            _context.SaveChanges();
         }
 
         public void DeleteApplication(int applicationId)
         {
-            throw new NotImplementedException();
+            var application = GetApplication(applicationId);
+
         }
 
-        public void GetApplicant(int applicantId)
+        public Applicant GetApplicant(int applicantId)
         {
             throw new NotImplementedException();
         }
 
-        public void GetApplicantApplications(int universityId)
+        public IList<ApplicationBEAN> GetApplicantApplications(int universityId)
         {
             throw new NotImplementedException();
         }
 
-        public void GetApplication(int applicationId)
+        public ApplicationBEAN GetApplication(int applicationId)
         {
             throw new NotImplementedException();
         }
@@ -59,7 +71,7 @@ namespace NAA.Data.DAO
             throw new NotImplementedException();
         }
 
-        public void GetUniversityApplications(int applicantId)
+        public IList<ApplicationBEAN> GetUniversityApplications(int applicantId)
         {
             throw new NotImplementedException();
         }
@@ -103,26 +115,24 @@ namespace NAA.Data.DAO
             return result.First().UniversityId;
         }
 
-        //private int GetIdFromUniversityName(string universityName)
-        //{
-        //    //TODO: change to int!!!
-        //    var result = from university in _context.University
-        //                 from application in _context.Application
-        //                     // where application.UniversityId == university.UniversityId
-        //                 where university.UniversityName == universityName
-        //                 select university;
-        //    return result.First().UniversityId;
-        //}
+        private int GetIdFromApplicantName(string applicantName)
+        {
+            var result = from applicant in _context.Applicant
+                         from application in _context.Application
+                         where application.ApplicantId == applicant.Id
+                         where applicant.ApplicantName == applicantName
+                         select applicant;
+            return result.First().Id;
+        }
 
-        //private int GetIdFromUniversityName(string universityName)
-        //{
-        //    //TODO: change to int!!!
-        //    var result = from university in _context.University
-        //                 from application in _context.Application
-        //                     // where application.UniversityId == university.UniversityId
-        //                 where university.UniversityName == universityName
-        //                 select university;
-        //    return result.First().UniversityId;
-        //}
+        private string GetNameFromApplicantId(int applicantId)
+        {
+            var result = from applicant in _context.Applicant
+                         from application in _context.Application
+                         where application.ApplicantId == applicant.Id
+                         where applicant.Id == applicantId
+                         select applicant;
+            return result.First().ApplicantName;
+        }
     }
 }

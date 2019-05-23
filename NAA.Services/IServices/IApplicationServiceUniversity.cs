@@ -1,4 +1,5 @@
-﻿using NAA.Data.BEAN;
+﻿using NAA.Data;
+using NAA.Data.BEAN;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace NAA.Services.IServices
 {
     public interface IApplicationServiceUniversity
     {
-        void GetApplicant(int applicantId);
-        void GetUniversityApplications(int applicantId);
+        Applicant GetApplicant(int applicantId);
+        IList<ApplicationBEAN> GetUniversityApplications(int applicantId);
         void UpdateOfferOfApplication(int applicationId, ApplicationBEAN application);
     }
 }
