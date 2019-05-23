@@ -1,4 +1,9 @@
-﻿using System;
+﻿using NAA.Data;
+using NAA.Data.BEAN;
+using NAA.Data.DAO;
+using NAA.Data.iDAO;
+using NAA.Services.IServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
