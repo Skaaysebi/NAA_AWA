@@ -32,9 +32,9 @@ namespace NAA.Services.Services
         {
             return _applicationDAO.GetUniversityApplications(universityId);
         }
-        public void UpdateOfferOfApplication(int applicationId, NAA.Data.BEAN.ApplicationBEAN application)
+        public ApplicationBEAN UpdateOfferOfApplication(int applicationId, ApplicationBEAN application)
         {
-            _applicationDAO.UpdateOfferOfApplication(applicationId, application);
+           return _applicationDAO.UpdateOfferOfApplication(applicationId, application);
         }
     }
 }

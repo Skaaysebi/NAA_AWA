@@ -37,9 +37,9 @@ namespace NAA.Webservices
             return _universityService.GetUniversityApplications(universityId).ToList();
         }
 
-        public NAA.Data.BEAN.ApplicationBEAN ChangeOfferOfApplication(int applicationId)
+        public NAA.Data.BEAN.ApplicationBEAN ChangeOfferOfApplication(int applicationId, NAA.Data.BEAN.ApplicationBEAN application)
         {
-            return _universityService.UpdateOfferOfApplication(applicationId);
+            return _universityService.UpdateOfferOfApplication(applicationId, application);
         }
     }
 }
