@@ -1,6 +1,10 @@
 ﻿using NAA.Data;
 using NAA.Data.BEAN;
+using NAA.Data.DAO;
+using NAA.Data.iDAO;
 using NAA.Services.IServices;
+using NAA.Services.uk.ac.shu.hallam.webteach_net;
+using NAA.Services.uk.ac.shu.hallam.webteach_net1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,56 +15,68 @@ namespace NAA.Services.Services
 {
     public class ApplicationService : IApplicationService
     {
-        private NAA.Services.uk.ac.shu.hallam.webteach_net.SheffieldWebService _service;
+        private IUniversityManagerService _universityManagerService;
+        private IApplicationDAO _dao;
 
         public ApplicationService()
         {
-            _service = new uk.ac.shu.hallam.webteach_net.SheffieldWebService();
+            _universityManagerService = new UniversityManagerService();
+            _dao = new ApplicationDAO();
         }
 
         public void CreateApplicant(Applicant applicant)
         {
-            throw new NotImplementedException();
+            _dao.CreateApplicant(applicant);
         }
 
         public void CreateApplication(ApplicationBEAN application)
         {
-            throw new NotImplementedException();
+            _dao.CreateApplication(application);
         }
 
         public void DeleteApplication(int applicationId)
         {
-            throw new NotImplementedException();
+            _dao.DeleteApplication(applicationId);
         }
 
-        public IList<ApplicationBEAN> GetApplicantApplications(int universityId)
+        public Applicant GetApplicant(int id)
         {
-            throw new NotImplementedException();
+            return _dao.GetApplicant(id);
+        }
+
+        public IList<ApplicationBEAN> GetApplicantApplications(int applicantID)
+        {
+            return _dao.GetApplicantApplications(applicantID);
         }
 
         public ApplicationBEAN GetApplication(int applicationId)
         {
-            throw new NotImplementedException();
+            return _dao.GetApplication(applicationId);
         }
 
-        public List<CourseBEAN> GetCourses(int universityId)
+        public CourseBEAN GetCourse(int universityId, int courseId)
         {
-            _service.
+            return _universityManagerService.GetCourse(universityId, courseId);
         }
 
-        public List<University> GetUniversities()
+        public IList<CourseBEAN> GetCourses(int universityId)
         {
-            throw new NotImplementedException();
+            return _universityManagerService.GetUniversityCourses(universityId);
+        }
+
+        public IList<University> GetUniversities()
+        {
+            return _dao.GetUniversities();
         }
 
         public void UpdateApplicant(Applicant applicant)
         {
-            throw new NotImplementedException();
+            _dao.UpdateApplicant(applicant);
         }
 
         public void UpdateApplication(ApplicationBEAN application)
         {
-            throw new NotImplementedException();
+            _dao.UpdateApplication(application);
         }
     }
 }
