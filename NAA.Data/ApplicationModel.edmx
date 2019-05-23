@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ApplicationDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ApplicationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applicant">
           <Key>
             <PropertyRef Name="Id" />
@@ -22,7 +22,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ApplicantId" Type="int" Nullable="false" />
           <Property Name="CourseName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="UniversityId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UniversityId" Type="int" Nullable="false" />
           <Property Name="PersonalStatement" Type="nvarchar(max)" Nullable="false" />
           <Property Name="TeacherReference" Type="nvarchar(max)" />
           <Property Name="TeacherContactDetails" Type="nvarchar(max)" Nullable="false" />
@@ -36,7 +36,7 @@
           <Property Name="UniversityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UniversityName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="ApplicationDataModelStoreContainer">
+        <EntityContainer Name="ApplicationModelStoreContainer">
           <EntitySet Name="Applicant" EntityType="Self.Applicant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="University" EntityType="Self.University" Schema="dbo" store:Type="Tables" />
@@ -45,7 +45,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ApplicationDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ApplicationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Applicant">
           <Key>
             <PropertyRef Name="Id" />
@@ -63,7 +63,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ApplicantId" Type="Int32" Nullable="false" />
           <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UniversityId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UniversityId" Type="Int32" Nullable="false" />
           <Property Name="PersonalStatement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TeacherReference" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TeacherContactDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -77,7 +77,7 @@
           <Property Name="UniversityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UniversityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="ApplicationModel" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ApplicationEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Applicant" EntityType="Self.Applicant" />
           <EntitySet Name="Application" EntityType="Self.Application" />
           <EntitySet Name="University" EntityType="Self.University" />
@@ -87,9 +87,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ApplicationDataModelStoreContainer" CdmEntityContainer="ApplicationModel">
+        <EntityContainerMapping StorageEntityContainer="ApplicationModelStoreContainer" CdmEntityContainer="ApplicationEntities">
           <EntitySetMapping Name="Applicant">
-            <EntityTypeMapping TypeName="ApplicationDataModel.Applicant">
+            <EntityTypeMapping TypeName="ApplicationModel.Applicant">
               <MappingFragment StoreEntitySet="Applicant">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ApplicantName" ColumnName="ApplicantName" />
@@ -100,7 +100,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Application">
-            <EntityTypeMapping TypeName="ApplicationDataModel.Application">
+            <EntityTypeMapping TypeName="ApplicationModel.Application">
               <MappingFragment StoreEntitySet="Application">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ApplicantId" ColumnName="ApplicantId" />
@@ -115,7 +115,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="University">
-            <EntityTypeMapping TypeName="ApplicationDataModel.University">
+            <EntityTypeMapping TypeName="ApplicationModel.University">
               <MappingFragment StoreEntitySet="University">
                 <ScalarProperty Name="UniversityId" ColumnName="UniversityId" />
                 <ScalarProperty Name="UniversityName" ColumnName="UniversityName" />
