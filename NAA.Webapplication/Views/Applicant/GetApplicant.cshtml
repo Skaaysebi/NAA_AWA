@@ -7,7 +7,7 @@
 <h2>User Management</h2>
 
 <p>
-    @Html.ActionLink("List of Universitys", "GetUniversities", new { id = Model.Id, controller = "University" })
+    @Html.ActionLink("List of Universitys", "GetUniversities", new { ApplicantId = Model.Id, controller = "University" })
     @Html.ActionLink("Edit Profile", "EditProfile", new { id = Model.Id, controller = "Applicant" })
     @Html.ActionLink("Manage Applications", "ManageApplications", new { id = Model.Id, controller = "Applications" })
 </p>

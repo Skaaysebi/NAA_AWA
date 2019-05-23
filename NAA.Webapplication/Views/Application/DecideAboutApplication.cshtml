@@ -1,0 +1,11 @@
+﻿@model NAA.Data.BEAN.ApplicationBEAN
+
+@{
+    ViewBag.Title = "DecideAboutApplication";
+}
+
+<h2>DecideAboutApplication</h2>
+
+@Html.ActionLink("Accept", "AcceptApplication", new { id=Model.Id, controller = "Application"})
+@Html.ActionLink("Decline", "DeclineApplication", new { id=Model.Id, controller = "Application"})
+

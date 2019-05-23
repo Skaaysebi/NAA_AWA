@@ -271,6 +271,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\University\GetUniversities.cshtml" />
+    <Content Include="Views\Application\GetApplications.cshtml" />
     <Content Include="Views\University\GetCourseDetails.cshtml" />
     <Content Include="Views\Application\CreateApplication.cshtml" />
     <Content Include="Views\University\GetCourses.cshtml" />
@@ -282,6 +283,7 @@
     <Content Include="Views\Course\GetCourses.cshtml" />
     <Content Include="Views\Course\GetCourse.cshtml" />
     <Content Include="Views\Applicant\CreateApplicant.cshtml" />
+    <Content Include="Views\Application\DecideAboutApplication.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

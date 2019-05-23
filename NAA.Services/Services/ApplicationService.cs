@@ -39,6 +39,16 @@ namespace NAA.Services.Services
             _dao.DeleteApplication(applicationId);
         }
 
+        public void AcceptApplication(int applicationId)
+        {
+            _dao.AcceptApplication(applicationId);
+        }
+
+        public void DeclineApplication(int applicationId)
+        {
+            _dao.DeclineApplication(applicationId);
+        }
+
         public Applicant GetApplicant(int id)
         {
             return _dao.GetApplicant(id);

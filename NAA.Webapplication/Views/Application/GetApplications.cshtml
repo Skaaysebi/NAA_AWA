@@ -61,7 +61,11 @@
             @Html.DisplayFor(modelItem => item.Firm)
         </td>
         <td>
-            @Html.ActionLink("Accept", "AcceptApplication", new { id=item.Id, controller = "Application" }) |
+            @if(item.UniversityOffer != "R")
+            {
+                Html.ActionLink("Accept", "AcceptApplication", new { id = item.Id, controller = "Application" });
+                @:|
+            }
             @Html.ActionLink("Delete", "DeleteApplication", new { id=item.Id, controller = "Application" })
         </td>
     </tr>
