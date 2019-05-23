@@ -283,6 +283,7 @@
     <Content Include="Views\Course\GetCourses.cshtml" />
     <Content Include="Views\Course\GetCourse.cshtml" />
     <Content Include="Views\Applicant\CreateApplicant.cshtml" />
+    <Content Include="Views\Application\DecideAboutApplication.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

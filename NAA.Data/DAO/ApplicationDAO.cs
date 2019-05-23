@@ -47,6 +47,22 @@ namespace NAA.Data.DAO
             _context.SaveChanges();
         }
 
+        public void AcceptApplication(int applicationId)
+        {
+            var actualApplication = GetActualApplication(applicationId);
+            actualApplication.Firm = true;
+
+            _context.SaveChanges();
+        }
+
+        public void DeclineApplication(int applicationId)
+        {
+            var actualApplication = GetActualApplication(applicationId);
+            actualApplication.Firm = false;
+
+            _context.SaveChanges();
+        }
+
         public Applicant GetApplicant(int applicantId)
         {
             var result = from applicant in _context.Applicant

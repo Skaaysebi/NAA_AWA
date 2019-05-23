@@ -22,6 +22,8 @@ namespace NAA.Data.iDAO
         IList<ApplicationBEAN> GetUniversityApplications(int applicantId);
         ApplicationBEAN GetApplication(int applicationId);
         void DeleteApplication(int applicationId);
+        void AcceptApplication(int applicationId);
+        void DeclineApplication(int applicationId);
 
         string GetNameFromUniversityId(int universityId);
     }

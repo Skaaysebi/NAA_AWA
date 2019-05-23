@@ -30,13 +30,7 @@ namespace NAA.Webapplication.Controllers
         
         public ActionResult EditApplication(int id)
         {
-            return View();
-        }
-
-        // GET: Application/Create
-        public ActionResult CreateApplication(int ApplicantId, int UniversityId, string CourseName)
-        {
-            ApplicationBEAN _applicationToEdit = _applicationService.GetApplication(id);
+            ApplicationBEAN _applicationToEdit = _applicationService.GetApplication(id); 
             return View(_applicationToEdit);
         }
 
@@ -54,7 +48,11 @@ namespace NAA.Webapplication.Controllers
             }
         }
 
-        // POST: Application/Create
+        public ActionResult CreateApplication(int ApplicantId, int UniversityId, string CourseName)
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult CreateApplication(ApplicationBEAN application)
         {
@@ -70,16 +68,39 @@ namespace NAA.Webapplication.Controllers
             }
         }
 
-        public ActionResult AcceptApplication()
+        public ActionResult DecideAboutApplication(int id)
         {
-
-            return View();
+            ApplicationBEAN _applicationToDecideAbout = _applicationService.GetApplication(id);
+            return View(_applicationToDecideAbout);
         }
 
         [HttpPost]
         public ActionResult AcceptApplication(int id)
         {
-            return RedirectToAction("ManageApplications", new { id = id, controller = "Application" });
+            try
+            {
+                // todo What happens after accept of application
+                _applicationService.AcceptApplication(id);
+                return RedirectToAction("ManageApplications", new { id = id, controller = "Application" });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeclineApplication(int id)
+        {
+            try
+            {
+                _applicationService.DeclineApplication(id);
+                return RedirectToAction("ManageApplications", new { id = id, controller = "Application" });
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         public ActionResult DeleteApplication(int id)

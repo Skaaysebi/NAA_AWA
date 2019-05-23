@@ -23,5 +23,7 @@ namespace NAA.Services.IServices
         IList<ApplicationBEAN> GetApplicantApplications(int applicantID);
         ApplicationBEAN GetApplication(int applicationId);
         void DeleteApplication(int applicationId);
+        void AcceptApplication(int applicationId);
+        void DeclineApplication(int applicationId);
     }
 }
