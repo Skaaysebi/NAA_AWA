@@ -1,5 +1,4 @@
-﻿using NAA.Data;
-using NAA.Services.IServices;
+﻿using NAA.Services.IServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,30 +7,44 @@ using System.Web.Mvc;
 
 namespace NAA.Webapplication.Controllers
 {
-    public class UniversityController : Controller
+    public class CourseController : Controller
     {
         private IApplicationService _applicationService;
 
-        public UniversityController()
+        public CourseController()
         {
             //_applicationService = new NAA.Services.Services.ApplicationService();
         }
-        // GET: University
-        public ActionResult GetUniversities(int applicantId)
+
+        // GET: University/Details/5
+        public ActionResult GetCourses(int UniversityId, int ApplicantId)
         {
-            ViewBag.applicantId = applicantId;
-            return View(_applicationService.GetUniversities());
+            ViewBag.ApplicantId = ApplicantId;
+            ViewBag.UniversityId = UniversityId;
+            return View(_applicationService.GetCourses(UniversityId));
         }
 
-        
+        // GET: University/Details/5
+        public ActionResult GetCourse(int CourseId, int UniversityId, int ApplicantId)
+        {
+            ViewBag.ApplicantId = ApplicantId;
+            ViewBag.UniversityId = UniversityId;
+            return View(_applicationService.GetCourse(UniversityId, CourseId));
+        }
 
-        // GET: University/Create
+        // GET: Course/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: Course/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: University/Create
+        // POST: Course/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -47,13 +60,13 @@ namespace NAA.Webapplication.Controllers
             }
         }
 
-        // GET: University/Edit/5
+        // GET: Course/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: University/Edit/5
+        // POST: Course/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -69,13 +82,13 @@ namespace NAA.Webapplication.Controllers
             }
         }
 
-        // GET: University/Delete/5
+        // GET: Course/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: University/Delete/5
+        // POST: Course/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
