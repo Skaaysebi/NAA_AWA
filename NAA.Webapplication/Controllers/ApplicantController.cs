@@ -22,18 +22,22 @@ namespace NAA.Webapplication.Controllers
             //_applicationService = new ApplicationService();
         }
 
+        [Authorize]
         public ActionResult GetApplicant(int id)
         { 
             ViewBag.ApplicantId = id;
+            ViewBag.Current = System.Web.HttpContext.Current.User.Identity.Name;
             return View();
         }
 
+        [Authorize]
         public ActionResult EditApplicant(int id)
         {
             Applicant _applicantToEdit = _applicationService.GetApplicant(id);
             return View(_applicantToEdit);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult EditApplicant(Applicant user)
         {
