@@ -20,9 +20,31 @@ namespace NAA.Webapplication.Controllers
             //_applicationService = new IApplicationService();
         }
 
-        public ActionResult ManageApplications()
+        public ActionResult ManageApplications(int id)
         {
-            return View();
+            IList<ApplicationBEAN> _applications = _applicationService.GetApplicantApplications(id);
+            ViewBag.applicantId = id;
+            return View(_applications);
+        }
+        
+        public ActionResult EditApplication(int id)
+        {
+            ApplicationBEAN _applicationToEdit = _applicationService.GetApplication(id);
+            return View(_applicationToEdit);
+        }
+
+        [HttpPost]
+        public ActionResult EditApplication(ApplicationBEAN application)
+        {
+            try
+            {
+                _applicationService.UpdateApplication(application);
+                return RedirectToAction("ManageApplications", new { id = application.Id, controller = "Application" });
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         public ActionResult AcceptApplication()
@@ -33,20 +55,29 @@ namespace NAA.Webapplication.Controllers
         [HttpPost]
         public ActionResult AcceptApplication(int id)
         {
-            return RedirectToAction("ManageApplications", new { id = id, controller = "Applicant" });
+            return RedirectToAction("ManageApplications", new { id = id, controller = "Application" });
         }
 
-        public ActionResult DeleteApplication()
+        public ActionResult DeleteApplication(int id)
         {
-            return View();
+            ApplicationBEAN _applicationToDelete = _applicationService.GetApplication(id);
+            return View(_applicationToDelete);
         }
 
         [HttpPost]
         public ActionResult DeleteApplication(ApplicationBEAN application)
         {
-            ApplicationBEAN _applicationToDelete = _applicationService.GetApplication(application.Id);
-            _applicationService.DeleteApplication(_applicationToDelete.Id);
-            return RedirectToAction("ManageApplications", new { id = _applicationToDelete.Id, controller = "Application" });
+            try
+            {
+                // Check if Application can be deleted or not?
+                ApplicationBEAN _applicationToDelete = _applicationService.GetApplication(application.Id);
+                _applicationService.DeleteApplication(_applicationToDelete.Id);
+                return RedirectToAction("ManageApplications", new { id = _applicationToDelete.Id, controller = "Application" });
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }

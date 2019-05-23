@@ -8,34 +8,36 @@ using System.Web.Mvc;
 
 using NAA.Data.DAO;
 using NAA.Services.Services;
+using NAA.Services.IServices;
 using NAA.Data.BEAN;
 
 namespace NAA.Webapplication.Controllers
 {
     public class ApplicantController : Controller
     {
-        private ApplicationService _applicationService;
+        private IApplicationService _applicationService;
 
         public ApplicantController()
         {
-            _applicationService = new ApplicationService();
+            //_applicationService = new ApplicationService();
         }
 
-        public ActionResult Usermanagement(int id)
+        public ActionResult ProfileManagement(int id)
         {
+            ViewBag.ApplicantId = id;
             return View();
         }
 
         public ActionResult EditProfile(int id)
         {
-
-            return View();
+            Applicant _applicantToEdit = _applicationService.getApplicant(id);
+            return View(_applicantToEdit);
         }
 
         [HttpPost]
-        public ActionResult EditProfile(int id, ApplicationBEAN user)
+        public ActionResult EditProfile(Applicant user)
         {
-            _applicationService.
+            _applicationService.UpdateApplicant(user);
             return RedirectToAction("Usermanagement", new { id = user.Id, controller="Applicant" });
         }
     }
