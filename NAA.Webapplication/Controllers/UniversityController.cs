@@ -16,7 +16,9 @@ namespace NAA.Webapplication.Controllers
         {
             //_applicationService = new NAA.Services.Services.ApplicationService();
         }
+
         // GET: University
+        [Authorize]
         public ActionResult GetUniversities(int applicantId)
         {
             ViewBag.applicantId = applicantId;
@@ -24,12 +26,14 @@ namespace NAA.Webapplication.Controllers
         }
 
         // GET: University/Details/5
+        [Authorize]
         public ActionResult GetCourses(int universityId, int applicantId)
         {
             return View(_applicationService.GetCourses(universityId));
         }
 
         // GET: University/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -37,6 +41,7 @@ namespace NAA.Webapplication.Controllers
 
         // POST: University/Create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(FormCollection collection)
         {
             try
@@ -52,6 +57,7 @@ namespace NAA.Webapplication.Controllers
         }
 
         // GET: University/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             return View();
@@ -59,6 +65,7 @@ namespace NAA.Webapplication.Controllers
 
         // POST: University/Edit/5
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
@@ -74,12 +81,14 @@ namespace NAA.Webapplication.Controllers
         }
 
         // GET: University/Delete/5
+        [Authorize]
         public ActionResult Delete(int id)
         {
             return View();
         }
 
         // POST: University/Delete/5
+        [Authorize]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

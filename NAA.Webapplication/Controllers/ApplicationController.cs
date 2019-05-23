@@ -20,19 +20,22 @@ namespace NAA.Webapplication.Controllers
             //_applicationService = new IApplicationService();
         }
 
+        [Authorize]
         public ActionResult ManageApplications(int id)
         {
             IList<ApplicationBEAN> _applications = _applicationService.GetApplicantApplications(id);
             ViewBag.applicantId = id;
             return View(_applications);
         }
-        
+
+        [Authorize]
         public ActionResult EditApplication(int id)
         {
             ApplicationBEAN _applicationToEdit = _applicationService.GetApplication(id);
             return View(_applicationToEdit);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult EditApplication(ApplicationBEAN application)
         {
@@ -47,23 +50,27 @@ namespace NAA.Webapplication.Controllers
             }
         }
 
+        [Authorize]
         public ActionResult AcceptApplication()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult AcceptApplication(int id)
         {
             return RedirectToAction("ManageApplications", new { id = id, controller = "Application" });
         }
 
+        [Authorize]
         public ActionResult DeleteApplication(int id)
         {
             ApplicationBEAN _applicationToDelete = _applicationService.GetApplication(id);
             return View(_applicationToDelete);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult DeleteApplication(ApplicationBEAN application)
         {
