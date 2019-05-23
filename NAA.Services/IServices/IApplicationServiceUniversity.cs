@@ -10,8 +10,8 @@ namespace NAA.Services.IServices
 {
     public interface IApplicationServiceUniversity
     {
-        Applicant GetApplicant(int applicantId);
+        Applicant GetApplicantByApplication(int applicationId);
         IList<ApplicationBEAN> GetUniversityApplications(int applicantId);
-        void UpdateOfferOfApplication(int applicationId, ApplicationBEAN application);
+        ApplicationBEAN UpdateOfferOfApplication(int applicationId, ApplicationBEAN application);
     }
 }
