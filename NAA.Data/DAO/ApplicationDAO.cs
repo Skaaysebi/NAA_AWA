@@ -74,7 +74,7 @@ namespace NAA.Data.DAO
         public IList<ApplicationBEAN> GetApplicantApplications(int universityId)
         {
             var results = from application in _context.Application
-                         where application.UniversityId == universityId
+                         where application.ApplicantId == universityId
                          select application;
             var applications = new List<ApplicationBEAN>();
             foreach (var result in results)

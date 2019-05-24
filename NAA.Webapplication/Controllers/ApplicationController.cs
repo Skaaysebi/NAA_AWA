@@ -88,7 +88,7 @@ namespace NAA.Webapplication.Controllers
         }
 
         [Authorize]
-        [HttpPost]
+
         public ActionResult AcceptApplication(int ApplicationId)
         {
             try
@@ -104,7 +104,6 @@ namespace NAA.Webapplication.Controllers
         }
 
         [Authorize]
-        [HttpPost]
         public ActionResult DeclineApplication(int ApplicationId)
         {
             try
@@ -136,7 +135,7 @@ namespace NAA.Webapplication.Controllers
                 var ApplicationId = application.Id;
                 ApplicationBEAN _applicationToDelete = _applicationService.GetApplication(ApplicationId);
                 _applicationService.DeleteApplication(ApplicationId);
-                return RedirectToAction("GetApplications", new { ApplicantId = _applicationToDelete.Id, controller = "Application" });
+                return RedirectToAction("GetApplications", new { ApplicantId = _applicationToDelete.ApplicantId, controller = "Application" });
             }
             catch
             {
