@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BEAN\ApplicationUniversityBean.cs" />
     <Compile Include="BEAN\CourseBEAN.cs" />
     <Compile Include="IServices\IApplicationService.cs" />
     <Compile Include="IServices\IApplicationServiceUniversity.cs" />

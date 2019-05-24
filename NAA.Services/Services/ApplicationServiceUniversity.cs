@@ -32,8 +32,31 @@ namespace NAA.Services.Services
         {
             return _applicationDAO.GetUniversityApplications(universityId);
         }
-        public ApplicationBEAN UpdateOfferOfApplication(ApplicationBEAN application)
-        {
+        public ApplicationBEAN UpdateOfferOfApplication(int applicationId, string State)
+        {   
+            var application = _applicationDAO.GetApplication(applicationId);
+            var applicationBeforeUpdate = _applicationDAO.GetApplication(application.Id);
+
+            /* Business rules */
+
+            if(State != "C" || State != "U" || State != "R" || State != "P")
+                throw new Exception("You have to use State with C, U, R or P");
+
+            if (applicationBeforeUpdate.UniversityOffer == "U" && State == "C")
+                throw new Exception("You can't change from unconditional to conditional offer.");
+
+            if (applicationBeforeUpdate.UniversityOffer == "C" && State == "P")
+                throw new Exception("You can't change from conditional to pending offer.");
+
+            if (applicationBeforeUpdate.UniversityOffer == "U" && State == "P")
+                throw new Exception("You can't change from unconditional to pending offer.");
+
+            if (applicationBeforeUpdate.UniversityOffer == "R" && State == "P")
+                throw new Exception("You can't change from rejected to pending offer.");
+
+            /*END Business rules */
+
+            application.UniversityOffer = State;
             _applicationDAO.UpdateApplication(application);
             return _applicationDAO.GetApplication(application.Id);
         }

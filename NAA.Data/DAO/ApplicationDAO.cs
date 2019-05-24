@@ -10,11 +10,11 @@ namespace NAA.Data.DAO
 {
     public class ApplicationDAO : IApplicationDAO
     {
-        private ApplicationEntities _context;
+        private ApplicationModel _context;
 
         public ApplicationDAO()
         {
-            _context = new ApplicationEntities();
+            _context = new ApplicationModel();
         }
 
         public void CreateApplicant(Applicant applicant)
@@ -154,6 +154,14 @@ namespace NAA.Data.DAO
         {
             var applicantName = GetIdFromApplicantName(GetApplication(applicationId).ApplicantName);
             return GetApplicant(applicantName);
+        }
+
+        public int GetIdOfUserEmail(string email)
+        {
+            var result = from applicant in _context.Applicant
+                          where applicant.Email == email
+                          select applicant;
+            return result.First().Id;
         }
 
         // Private Help Methods

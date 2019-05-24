@@ -26,5 +26,6 @@ namespace NAA.Data.iDAO
         void DeclineApplication(int applicationId);
 
         string GetNameFromUniversityId(int universityId);
+        int GetIdOfUserEmail(string email);
     }
 }

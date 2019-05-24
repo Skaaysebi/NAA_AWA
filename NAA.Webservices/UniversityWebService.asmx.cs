@@ -7,6 +7,8 @@ using NAA.Services;
 using NAA.Data;
 using NAA.Services.Services;
 using NAA.Data.BEAN;
+using NAA.Services.BEAN;
+using System.Web.Services.Protocols;
 
 namespace NAA.Webservices
 {
@@ -31,19 +33,42 @@ namespace NAA.Webservices
         [WebMethod]
         public Applicant GetApplicantByApplication(int applicationId)
         {
-            return _universityService.GetApplicantByApplication(applicationId);
+            try
+            {
+                return _universityService.GetApplicantByApplication(applicationId);
+            }
+            catch (Exception e)
+            {
+                Context.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                return null;
+            }
         }
 
         [WebMethod]
         public List<ApplicationBEAN> GetApplications(int universityId)
         {
-            return _universityService.GetUniversityApplications(universityId).ToList();
+            try
+            {
+                return _universityService.GetUniversityApplications(universityId).ToList();
+            } catch (Exception e)
+            {
+                Context.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                return null;
+            }
         }
 
         [WebMethod]
-        public ApplicationBEAN ChangeOfferOfApplication(ApplicationBEAN application)
+        public ApplicationUniversityBean ChangeOfferOfApplication(int applicationId, string State)
         {
-            return _universityService.UpdateOfferOfApplication(application);
+            try { 
+                var applicant = _universityService.UpdateOfferOfApplication(applicationId, State);
+                return new ApplicationUniversityBean(applicant);
+            }
+            catch (Exception e)
+            {
+                Context.Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                return null;
+            }
         }
     }
 }
