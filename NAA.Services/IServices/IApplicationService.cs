@@ -26,5 +26,6 @@ namespace NAA.Services.IServices
         void AcceptApplication(int applicationId);
         void DeclineApplication(int applicationId);
         int GetIdOfUserEmail(string email);
+        bool HasApplicantAcceptedApplications(int applicantId);
     }
 }

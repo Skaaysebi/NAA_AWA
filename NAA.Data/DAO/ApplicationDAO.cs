@@ -84,6 +84,21 @@ namespace NAA.Data.DAO
             return applications;
         }
 
+        public bool HasApplicantAcceptedApplications(int applicantId)
+        {
+            var applications = GetApplicantApplications(applicantId);
+            var hasApplicantAccepted = false;
+            foreach (var item in applications)
+            {
+                if(item.Firm == true)
+                {
+                    hasApplicantAccepted = true;
+                    break;
+                }
+            }
+            return hasApplicantAccepted;
+        }
+
         public ApplicationBEAN GetApplication(int applicationId)
         {
             var actualApplication = GetActualApplication(applicationId);

@@ -27,5 +27,6 @@ namespace NAA.Data.iDAO
 
         string GetNameFromUniversityId(int universityId);
         int GetIdOfUserEmail(string email);
+        bool HasApplicantAcceptedApplications(int applicantId);
     }
 }

@@ -28,7 +28,9 @@
         <th>
             @Html.DisplayNameFor(model => model.UniversityOffer)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Firm)
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -53,25 +55,31 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UniversityOffer)
-        </td>
+        </td>       
         <td>
-            @if (item.UniversityOffer == "P" || item.Firm == null)
-            {
-                @:|
-                @Html.ActionLink("Edit", "EditApplication", new { ApplicationId = item.Id, ApplicantId = item.ApplicantId, controller = "Application" });
-            }
-            @if (item.UniversityOffer == "U" || item.UniversityOffer == "C" || item.Firm == null)
-            {
-                @:|
-                Html.ActionLink("Offer", "DecideAboutApplication", new { ApplicationId = item.Id, ApplicantId = item.ApplicantId, controller = "Application" });
-            }
-            @if (item.UniversityOffer == "P" || item.Firm == null)
-            {
-                @:|
-                @Html.ActionLink("Delete", "DeleteApplication", new { Id = item.Id, ApplicantId = item.ApplicantId, controller = "Application" });
-            }
+            @Html.DisplayFor(modelItem => item.Firm)
         </td>
-    </tr>
-}
+        @if (ViewBag.hasAcceptedApplications != true)
+        {
+            <td>
+                @if (item.UniversityOffer == "P" || item.Firm == null)
+                {
+                    @:|
+                    @Html.ActionLink("Edit", "EditApplication", new { ApplicationId = item.Id, ApplicantId = item.ApplicantId, controller = "Application" });
+                }
+                @if (item.UniversityOffer == "U" || item.UniversityOffer == "C" || item.Firm == null)
+                {
+                    @:|
+                    Html.ActionLink("Offer", "DecideAboutApplication", new { ApplicationId = item.Id, ApplicantId = item.ApplicantId, controller = "Application" });
+                }
+                @if (item.UniversityOffer == "P" || item.Firm == null)
+                {
+                    @:|
+                    @Html.ActionLink("Delete", "DeleteApplication", new { Id = item.Id, ApplicantId = item.ApplicantId, controller = "Application" });
+                }
+            </td>
+        }
+        </tr>
+    }
 
 </table>
