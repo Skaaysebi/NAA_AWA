@@ -28,9 +28,6 @@
         <th>
             @Html.DisplayNameFor(model => model.UniversityOffer)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Firm)
-        </th>
         <th></th>
     </tr>
 
@@ -58,15 +55,21 @@
             @Html.DisplayFor(modelItem => item.UniversityOffer)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Firm)
-        </td>
-        <td>
-            @if(item.UniversityOffer != "R")
+            @if (item.UniversityOffer == "P" || item.Firm == null)
             {
-                Html.ActionLink("Accept", "AcceptApplication", new { id = item.Id, controller = "Application" });
                 @:|
+                @Html.ActionLink("Edit", "EditApplication", new { ApplicationId = item.Id, ApplicantId = item.ApplicantId, controller = "Application" });
             }
-            @Html.ActionLink("Delete", "DeleteApplication", new { id=item.Id, controller = "Application" })
+            @if (item.UniversityOffer == "U" || item.UniversityOffer == "C" || item.Firm == null)
+            {
+                @:|
+                Html.ActionLink("Offer", "DecideAboutApplication", new { ApplicationId = item.Id, ApplicantId = item.ApplicantId, controller = "Application" });
+            }
+            @if (item.UniversityOffer == "P" || item.Firm == null)
+            {
+                @:|
+                @Html.ActionLink("Delete", "DeleteApplication", new { Id = item.Id, ApplicantId = item.ApplicantId, controller = "Application" });
+            }
         </td>
     </tr>
 }

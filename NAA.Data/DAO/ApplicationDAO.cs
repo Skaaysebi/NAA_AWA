@@ -27,7 +27,7 @@ namespace NAA.Data.DAO
         {
             Application realApplication = new Application()
             {
-                ApplicantId = GetIdFromApplicantName(application.ApplicantName),
+                ApplicantId = application.ApplicantId,
                 CourseName = application.CourseName,
                 TeacherReference = application.TeacherReference,
                 UniversityId = GetIdFromUniversityName(application.UniversityName),
@@ -90,6 +90,7 @@ namespace NAA.Data.DAO
             var application = new ApplicationBEAN()
             {
                 Id = actualApplication.Id,
+                ApplicantId = actualApplication.ApplicantId,
                 ApplicantName = GetNameFromApplicantId(actualApplication.ApplicantId),
                 CourseName = actualApplication.CourseName,
                 UniversityName = GetNameFromUniversityId(actualApplication.UniversityId),
@@ -138,7 +139,7 @@ namespace NAA.Data.DAO
         public void UpdateApplication(ApplicationBEAN application)
         {
             var actualApplication = GetActualApplication(application.Id);
-            actualApplication.ApplicantId = GetIdFromApplicantName(application.ApplicantName);
+            actualApplication.ApplicantId = application.ApplicantId;
             actualApplication.CourseName = application.CourseName;
             actualApplication.Firm = application.Firm;
             actualApplication.PersonalStatement = application.PersonalStatement;
@@ -168,8 +169,6 @@ namespace NAA.Data.DAO
         private int GetIdFromUniversityName(string universityName)
         {
             var result = from university in _context.University
-                         from application in _context.Application
-                         where application.UniversityId == university.UniversityId
                          where university.UniversityName == universityName
                          select university;
             return result.First().UniversityId;
@@ -178,8 +177,6 @@ namespace NAA.Data.DAO
         public string GetNameFromUniversityId(int universityId)
         {
             var result = from university in _context.University
-                         from application in _context.Application
-                         where application.UniversityId == university.UniversityId
                          where university.UniversityId == universityId
                          select university;
             return result.First().UniversityName;
@@ -188,8 +185,6 @@ namespace NAA.Data.DAO
         private int GetIdFromApplicantName(string applicantName)
         {
             var result = from applicant in _context.Applicant
-                         from application in _context.Application
-                         where application.ApplicantId == applicant.Id
                          where applicant.ApplicantName == applicantName
                          select applicant;
             return result.First().Id;
@@ -198,8 +193,6 @@ namespace NAA.Data.DAO
         private string GetNameFromApplicantId(int applicantId)
         {
             var result = from applicant in _context.Applicant
-                         from application in _context.Application
-                         where application.ApplicantId == applicant.Id
                          where applicant.Id == applicantId
                          select applicant;
             return result.First().ApplicantName;

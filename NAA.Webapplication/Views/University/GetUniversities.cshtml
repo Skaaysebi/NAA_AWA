@@ -6,9 +6,6 @@
 
 <h2>GetUniversities</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -23,7 +20,7 @@
             @Html.DisplayFor(modelItem => item.UniversityName)
         </td>
         <td>
-            @Html.ActionLink("Courses", "GetCourses", new { UniversityId= item.UniversityId, ApplicantId = ViewBag.ApplicantId, Controller="Course" })
+            @Html.ActionLink("Courses", "GetCourses", new { UniversityId = item.UniversityId, UniversityName = item.UniversityName, ApplicantId = ViewBag.ApplicantId, Controller="Course" })
         </td>
     </tr>
 }

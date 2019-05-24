@@ -35,7 +35,7 @@
             @Html.DisplayFor(modelItem => item.Degree)
         </td>
         <td>
-            @Html.ActionLink("Details", "GetCourse", new { id=item.Id, ApplicantId = ViewBag.ApplicantId, UniversityId = ViewBag.UniversityId, Controller="Course" })
+            @Html.ActionLink("Details", "GetCourse", new { courseId=item.Id, ApplicantId = ViewBag.ApplicantId, UniversityName = ViewBag.UniversityName, UniversityId = ViewBag.UniversityId, Controller="Course" })
 
         </td>
     </tr>

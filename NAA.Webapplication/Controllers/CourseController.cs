@@ -1,4 +1,5 @@
-﻿using NAA.Services.Services;
+﻿using NAA.Data.BEAN;
+using NAA.Services.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,21 +19,25 @@ namespace NAA.Webapplication.Controllers
 
         // GET: University/Details/5
         [Authorize]
-        public ActionResult GetCourses(int UniversityId, int ApplicantId)
+        public ActionResult GetCourses(string UniversityName, int UniversityId, int ApplicantId)
         {
             ViewBag.ApplicantId = ApplicantId;
             ViewBag.UniversityId = UniversityId;
+            ViewBag.UniversityName = UniversityName;
             return View(_applicationService.GetCourses(UniversityId));
         }
 
 
         // GET: University/Details/5
         [Authorize]
-        public ActionResult GetCourse(int CourseId, int UniversityId, int ApplicantId)
+        public ActionResult GetCourse(int courseId, string UniversityName, int UniversityId, int ApplicantId)
         {
+            IList<ApplicationBEAN> _applicantApplication = _applicationService.GetApplicantApplications(ApplicantId);
+            ViewBag.applicationCount = _applicantApplication.Count;
             ViewBag.ApplicantId = ApplicantId;
             ViewBag.UniversityId = UniversityId;
-            return View(_applicationService.GetCourse(UniversityId, CourseId));
+            ViewBag.UniversityName = UniversityName;
+            return View(_applicationService.GetCourse(UniversityId, courseId));
         }
     }
 }

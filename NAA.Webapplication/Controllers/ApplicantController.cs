@@ -22,17 +22,17 @@ namespace NAA.Webapplication.Controllers
         }
 
         [Authorize]
-        public ActionResult GetApplicant(int id)
+        public ActionResult GetApplicant(int ApplicantId)
         { 
-            ViewBag.ApplicantId = id;
+            ViewBag.ApplicantId = ApplicantId;
             ViewBag.Current = System.Web.HttpContext.Current.User.Identity.Name;
-            return View(_applicationService.GetApplicant(id));
+            return View(_applicationService.GetApplicant(ApplicantId));
         }
 
         [Authorize]
-        public ActionResult EditApplicant(int id)
+        public ActionResult EditApplicant(int ApplicantId)
         {
-            Applicant _applicantToEdit = _applicationService.GetApplicant(id);
+            Applicant _applicantToEdit = _applicationService.GetApplicant(ApplicantId);
             return View(_applicantToEdit);
         }
 
@@ -45,7 +45,7 @@ namespace NAA.Webapplication.Controllers
                 _applicationService.UpdateApplicant(user);
                 
                 //return RedirectToAction("Usermanagement", new { id = user.Id, Controller = "Applicant", action="GetApplicant" });
-                return RedirectToAction("GetApplicant", new { id = user.Id, Controller = "Applicant" });
+                return RedirectToAction("GetApplicant", new { ApplicantId = user.Id, Controller = "Applicant" });
             }
             catch
             {

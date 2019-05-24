@@ -27,18 +27,21 @@ namespace NAA.Webservices
         {
             _universityService = new ApplicationServiceUniversity();
         }
+
         [WebMethod]
         public Applicant GetApplicantByApplication(int applicationId)
         {
             return _universityService.GetApplicantByApplication(applicationId);
         }
 
+        [WebMethod]
         public List<ApplicationBEAN> GetApplications(int universityId)
         {
             return _universityService.GetUniversityApplications(universityId).ToList();
         }
 
-        public ApplicationBEAN ChangeOfferOfApplication(int applicationId, ApplicationBEAN application)
+        [WebMethod]
+        public ApplicationBEAN ChangeOfferOfApplication(ApplicationBEAN application)
         {
             return _universityService.UpdateOfferOfApplication(application);
         }

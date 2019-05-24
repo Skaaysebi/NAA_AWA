@@ -19,17 +19,17 @@ namespace NAA.Webapplication.Controllers
         }
 
         [Authorize]
-        public ActionResult ManageApplications(int id)
+        public ActionResult GetApplications(int ApplicantId)
         {
-            IList<ApplicationBEAN> _applications = _applicationService.GetApplicantApplications(id);
-            ViewBag.applicantId = id;
+            IList<ApplicationBEAN> _applications = _applicationService.GetApplicantApplications(ApplicantId);
+            ViewBag.applicantId = ApplicantId;
             return View(_applications);
         }
 
         [Authorize]
-        public ActionResult EditApplication(int id)
+        public ActionResult EditApplication(int ApplicationId)
         {
-            ApplicationBEAN _applicationToEdit = _applicationService.GetApplication(id);
+            ApplicationBEAN _applicationToEdit = _applicationService.GetApplication(ApplicationId);
             return View(_applicationToEdit);
         }
 
@@ -40,7 +40,7 @@ namespace NAA.Webapplication.Controllers
             try
             {
                 _applicationService.UpdateApplication(application);
-                return RedirectToAction("ManageApplications", new { id = application.Id, controller = "Application" });
+                return RedirectToAction("GetApplications", new { ApplicantId = application.ApplicantId, controller = "Application" });
             }
             catch
             {
@@ -48,10 +48,10 @@ namespace NAA.Webapplication.Controllers
             }
         }
 
-        public ActionResult CreateApplication(int courseId, string CourseName, int ApplicantId, int UniversityId)
+        public ActionResult CreateApplication(int courseId, string CourseName, int ApplicantId, string UniversityName, int UniversityId)
         {
             IList<ApplicationBEAN> _applicantApplication = _applicationService.GetApplicantApplications(ApplicantId);
-            if (_applicantApplication.Count <= 5)
+            if (_applicantApplication.Count < 5)
             {
                 return View();
             }
@@ -67,32 +67,34 @@ namespace NAA.Webapplication.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                application.Firm = null;
+                application.UniversityOffer = "P";
                 _applicationService.CreateApplication(application);
-                return RedirectToAction("GetCourseDetails", new { courseId = courseId, ApplicantId = application.ApplicantId, UniversityId = application.UniversityId, Controller = "Course" });
+                return RedirectToAction("GetCourses", new { UniversityId = application.UniversityId, UniversityName = application.UniversityName, ApplicantId = application.ApplicantId, Controller = "Course" });
             }
-            catch
+            catch (Exception e)
             {
+           
                 return View();
             }
         }
 
         [Authorize]
-        public ActionResult DecideAboutApplication(int id)
+        public ActionResult DecideAboutApplication(int ApplicationId)
         {
-            ApplicationBEAN _applicationToDecideAbout = _applicationService.GetApplication(id);
+            ApplicationBEAN _applicationToDecideAbout = _applicationService.GetApplication(ApplicationId);
             return View(_applicationToDecideAbout);
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult AcceptApplication(int id)
+        public ActionResult AcceptApplication(int ApplicationId)
         {
             try
             {
                 // todo What happens after accept of application
-                _applicationService.AcceptApplication(id);
-                return RedirectToAction("ManageApplications", new { id = id, controller = "Application" });
+                _applicationService.AcceptApplication(ApplicationId);
+                return RedirectToAction("ManageApplications", new { id = ApplicationId, controller = "Application" });
             }
             catch
             {
@@ -116,9 +118,10 @@ namespace NAA.Webapplication.Controllers
         }
 
         [Authorize]
-        public ActionResult DeleteApplication(int id)
+        public ActionResult DeleteApplication(int Id)
         {
-            ApplicationBEAN _applicationToDelete = _applicationService.GetApplication(id);
+            ApplicationBEAN _applicationToDelete = _applicationService.GetApplication(Id);
+            ViewBag.Id = Id;
             return View(_applicationToDelete);
         }
 
@@ -128,10 +131,10 @@ namespace NAA.Webapplication.Controllers
         {
             try
             {
-                // Check if Application can be deleted or not?
-                ApplicationBEAN _applicationToDelete = _applicationService.GetApplication(application.Id);
-                _applicationService.DeleteApplication(_applicationToDelete.Id);
-                return RedirectToAction("ManageApplications", new { id = _applicationToDelete.Id, controller = "Application" });
+                var ApplicationId = application.Id;
+                ApplicationBEAN _applicationToDelete = _applicationService.GetApplication(ApplicationId);
+                _applicationService.DeleteApplication(ApplicationId);
+                return RedirectToAction("GetApplications", new { ApplicantId = _applicationToDelete.Id, controller = "Application" });
             }
             catch
             {

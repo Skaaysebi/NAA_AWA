@@ -37,6 +37,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Create Application", "CreateApplication", new { courseId = Model.Id, CourseName = Model.Name })
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    @if (ViewBag.applicationCount <= 5 )
+    {
+        @Html.ActionLink("Create Application", "CreateApplication", new { courseId = Model.Id, CourseName = Model.Name, ApplicantId = ViewBag.ApplicantId, UniversityName = ViewBag.UniversityName, UniversityId = ViewBag.UniversityId, Controller = "Application" })
+    }
+        @Html.ActionLink("Back to List", "Index")
+    </p>
