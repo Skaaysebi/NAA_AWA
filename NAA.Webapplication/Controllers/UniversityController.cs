@@ -1,5 +1,5 @@
 ﻿using NAA.Data;
-using NAA.Services.IServices;
+using NAA.Services.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +10,11 @@ namespace NAA.Webapplication.Controllers
 {
     public class UniversityController : Controller
     {
-        private IApplicationService _applicationService;
+        private ApplicationService _applicationService;
 
         public UniversityController()
         {
-            //_applicationService = new NAA.Services.Services.ApplicationService();
+            _applicationService = new ApplicationService();
         }
 
         // GET: University
@@ -25,12 +25,7 @@ namespace NAA.Webapplication.Controllers
             return View(_applicationService.GetUniversities());
         }
 
-        // GET: University/Details/5
-        [Authorize]
-        public ActionResult GetCourses(int universityId, int applicantId)
-        {
-            return View(_applicationService.GetCourses(universityId));
-        }
+     
 
         // GET: University/Create
         [Authorize]

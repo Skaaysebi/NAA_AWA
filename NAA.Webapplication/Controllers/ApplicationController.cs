@@ -1,24 +1,21 @@
 ﻿using NAA.Data;
 using NAA.Data.BEAN;
-using NAA.Services.IServices;
+using NAA.Services.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-using NAA.Data.BEAN;
-using NAA.Services.IServices;
-
 namespace NAA.Webapplication.Controllers
 {
     public class ApplicationController : Controller
     {
-        private IApplicationService _applicationService;
+        private ApplicationService _applicationService;
 
         public ApplicationController()
         {
-            //_applicationService = new IApplicationService();
+            _applicationService = new ApplicationService();
         }
 
         [Authorize]
@@ -53,7 +50,15 @@ namespace NAA.Webapplication.Controllers
 
         public ActionResult CreateApplication(int courseId, string CourseName, int ApplicantId, int UniversityId)
         {
-            return View();
+            IList<ApplicationBEAN> _applicantApplication = _applicationService.GetApplicantApplications(ApplicantId);
+            if (_applicantApplication.Count <= 5)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("GetCourse", new { id = courseId, ApplicantId = ApplicantId, UniversityId = UniversityId, Controller = "Course" });
+            }
         }
 
         [Authorize]

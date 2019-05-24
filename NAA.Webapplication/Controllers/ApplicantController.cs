@@ -8,18 +8,17 @@ using System.Web.Mvc;
 
 using NAA.Data.DAO;
 using NAA.Services.Services;
-using NAA.Services.IServices;
 using NAA.Data.BEAN;
 
 namespace NAA.Webapplication.Controllers
 {
     public class ApplicantController : Controller
     {
-        private IApplicationService _applicationService;
+        private ApplicationService _applicationService;
 
         public ApplicantController()
         {
-            //_applicationService = new ApplicationService();
+            _applicationService = new ApplicationService();
         }
 
         [Authorize]
@@ -27,7 +26,7 @@ namespace NAA.Webapplication.Controllers
         { 
             ViewBag.ApplicantId = id;
             ViewBag.Current = System.Web.HttpContext.Current.User.Identity.Name;
-            return View();
+            return View(_applicationService.GetApplicant(id));
         }
 
         [Authorize]
@@ -43,9 +42,10 @@ namespace NAA.Webapplication.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                _applicationService.UpdateApplicant(user);
                 
-                //return RedirectToAction("ProfileManagement", new { applicantId = applicant.Id, Controller = "Applicant", Action = "ProfileManagement" });
+                //return RedirectToAction("Usermanagement", new { id = user.Id, Controller = "Applicant", action="GetApplicant" });
+                return RedirectToAction("GetApplicant", new { id = user.Id, Controller = "Applicant" });
             }
             catch
             {
