@@ -39,7 +39,7 @@ namespace NAA.Services.Services
 
             /* Business rules */
 
-            if(State != "C" || State != "U" || State != "R" || State != "P")
+            if(State != "C" && State != "U" && State != "R" && State != "P")
                 throw new Exception("You have to use State with C, U, R or P");
 
             if (applicationBeforeUpdate.UniversityOffer == "U" && State == "C")

@@ -22,9 +22,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                      @* TODO replace id with current user id *@
-                    <li>@Html.ActionLink("Profile", "GetApplicant", new { ApplicantId = 1, Controller = "Applicant" })</li>
+                    <li>@Html.ActionLink("Profile", "GetApplicant", new { ApplicantId = ViewBag.id, Controller = "Applicant" })</li>
                     <li>
-                        @Html.ActionLink("List of Universitys", "GetUniversities", new { ApplicantId = 1, controller = "University" })
+                        @Html.ActionLink("List of Universitys", "GetUniversities", new { ApplicantId = ViewBag.id, controller = "University" })
                     </li>
                 </ul>
                 @Html.Partial("_LoginPartial")

@@ -56,7 +56,11 @@ namespace NAA.Webapplication.Controllers
         // GET: Applicant/Create
         public ActionResult CreateApplicant()
         {
-            return View();
+            var applicant = new Applicant()
+            {
+                Email = System.Web.HttpContext.Current.User.Identity.Name
+            };
+            return View(applicant);
         }
 
         // POST: Applicant/Create
@@ -65,6 +69,7 @@ namespace NAA.Webapplication.Controllers
         {
             try
             {
+                ViewBag.email = System.Web.HttpContext.Current.User.Identity.Name;
                 // TODO: Add insert logic here
                 _applicationService.CreateApplicant(applicant);
                 return RedirectToAction("GetApplicant", new { applicantId = applicant.Id, Controller = "Applicant" });

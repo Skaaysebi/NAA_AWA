@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using NAA.Services.Services;
 using NAA.Webapplication.Models;
 
 namespace NAA.Webapplication.Controllers
@@ -18,9 +19,13 @@ namespace NAA.Webapplication.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        private ApplicationService _applicationService;
+
         public AccountController()
         {
+            _applicationService = new ApplicationService();
         }
+
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
@@ -76,6 +81,8 @@ namespace NAA.Webapplication.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var id = _applicationService.GetIdOfUserEmail(model.Email);
+            ViewBag.id = id;
             switch (result)
             {
                 case SignInStatus.Success:
