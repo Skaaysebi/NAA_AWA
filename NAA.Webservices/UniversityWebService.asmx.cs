@@ -38,10 +38,10 @@ namespace NAA.Webservices
             return _universityService.GetUniversityApplications(universityId).ToList();
         }
         [WebMethod]
-        public ApplicationBEAN ChangeOfferOfApplication(ApplicationBEAN application)
+        public ApplicationBEAN ChangeOfferOfApplication(int applicationId, string State)
         {
             try { 
-                return _universityService.UpdateOfferOfApplication(application);
+                return _universityService.UpdateOfferOfApplication(applicationId, State);
             }
             catch (System.Web.Services.Protocols.SoapException e)
             {
