@@ -23,6 +23,7 @@ namespace NAA.Webapplication.Controllers
         {
             IList<ApplicationBEAN> _applications = _applicationService.GetApplicantApplications(ApplicantId);
             ViewBag.applicantId = ApplicantId;
+            ViewBag.hasAcceptedApplications = _applicationService.HasApplicantAcceptedApplications(ApplicantId);
             return View(_applications);
         }
 
@@ -92,9 +93,9 @@ namespace NAA.Webapplication.Controllers
         {
             try
             {
-                // todo What happens after accept of application
                 _applicationService.AcceptApplication(ApplicationId);
-                return RedirectToAction("ManageApplications", new { id = ApplicationId, controller = "Application" });
+                var applicantId = _applicationService.GetApplication(ApplicationId).ApplicantId;
+                return RedirectToAction("GetApplications", new { ApplicantId = applicantId, controller = "Application" });
             }
             catch
             {
@@ -104,12 +105,13 @@ namespace NAA.Webapplication.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult DeclineApplication(int id)
+        public ActionResult DeclineApplication(int ApplicationId)
         {
             try
             {
-                _applicationService.DeclineApplication(id);
-                return RedirectToAction("ManageApplications", new { id = id, controller = "Application" });
+                _applicationService.DeclineApplication(ApplicationId);
+                var applicantId = _applicationService.GetApplication(ApplicationId).ApplicantId;
+                return RedirectToAction("GetApplications", new { ApplicantId = applicantId, controller = "Application" });
             }
             catch
             {

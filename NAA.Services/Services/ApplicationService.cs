@@ -93,5 +93,10 @@ namespace NAA.Services.Services
         {
             return _dao.GetIdOfUserEmail(email);
         }
+
+        public bool HasApplicantAcceptedApplications(int applicantId)
+        {
+            return _dao.HasApplicantAcceptedApplications(applicantId);
+        }
     }
 }
