@@ -32,15 +32,21 @@ namespace NAA.Webservices
         {
             return _universityService.GetApplicantByApplication(applicationId);
         }
-
+        [WebMethod]
         public List<ApplicationBEAN> GetApplications(int universityId)
         {
             return _universityService.GetUniversityApplications(universityId).ToList();
         }
-
-        public ApplicationBEAN ChangeOfferOfApplication(int applicationId, ApplicationBEAN application)
+        [WebMethod]
+        public ApplicationBEAN ChangeOfferOfApplication(ApplicationBEAN application)
         {
-            return _universityService.UpdateOfferOfApplication(application);
+            try { 
+                return _universityService.UpdateOfferOfApplication(application);
+            }
+            catch (System.Web.Services.Protocols.SoapException e)
+            {
+                throw e;  
+            }
         }
     }
 }

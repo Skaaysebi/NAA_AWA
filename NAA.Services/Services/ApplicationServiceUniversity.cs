@@ -33,7 +33,10 @@ namespace NAA.Services.Services
             return _applicationDAO.GetUniversityApplications(universityId);
         }
         public ApplicationBEAN UpdateOfferOfApplication(ApplicationBEAN application)
-        {
+        {   
+            var applicationBeforeUpdate = _applicationDAO.GetApplication(application.Id);
+            if (applicationBeforeUpdate.UniversityOffer == "U" && application.UniversityOffer == "C")
+                throw new Exception("You can't change from unconditional to conditional offer.");
             _applicationDAO.UpdateApplication(application);
             return _applicationDAO.GetApplication(application.Id);
         }
