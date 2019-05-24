@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NAA.Services.BEAN
 {
-    class ApplicationUniversityBean
+    public class ApplicationUniversityBean
     {
         public string ApplicantName { get; set; }
         public string CourseName { get; set; }
@@ -17,6 +17,10 @@ namespace NAA.Services.BEAN
         public string TeacherContactDetails { get; set; }
         public string UniversityOffer { get; set; }
         public Nullable<bool> Firm { get; set; }
+
+        public ApplicationUniversityBean()
+        {
+        }
 
         public ApplicationUniversityBean(ApplicationBEAN application)
         {

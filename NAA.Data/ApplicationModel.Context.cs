@@ -13,10 +13,10 @@ namespace NAA.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ApplicationEntities : DbContext
+    public partial class ApplicationModel : DbContext
     {
-        public ApplicationEntities()
-            : base("name=ApplicationEntities")
+        public ApplicationModel()
+            : base("name=ApplicationModel")
         {
         }
     

@@ -88,5 +88,10 @@ namespace NAA.Services.Services
         {
             _dao.UpdateApplication(application);
         }
+
+        public int GetIdOfUserEmail(string email)
+        {
+            return _dao.GetIdOfUserEmail(email);
+        }
     }
 }
